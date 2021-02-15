@@ -7,16 +7,25 @@ from circle import Circle
 class Image:
     def __init__(self, x, y, width, height):
         self.x, self.y, self.width, self.height = x, y, width, height
-        # Create image with CIRCLIFY on it
-        self.image = pygame.Surface((self.width, self.height))
-        self.image.fill((0, 0, 0))
-        text = pygame.font.SysFont("comicsans", 120).render("CIRCLIFY", 1, WHITE)
-        self.image.blit(text, (self.width//2 - text.get_width()//2, self.height//2 - text.get_height()//2))
+        self.image = None
 
+        # Create image with CIRCLIFY on it
+        image = pygame.Surface((width, height))
+        image.fill((0, 0, 0))
+        text = pygame.font.SysFont("comicsans", 120).render("CIRCLIFY", 1, WHITE)
+        image.blit(text, (width//2 - text.get_width()//2, height//2 - text.get_height()//2))
+        self.set_image(image, WHITE)
+
+        self.open = [(x, y) for x in range(width) for y in range(height)]
         self.circles: "list[Circle]" = []
         self.circle_spawn_rate = 1  # Lower for higher resolution.
         self.showing_image = False
         self.growing = True
+
+    def set_image(self, image, color):
+        self.circles.clear()
+        image = pygame.transform.scale(image, (self.width, self.height))
+        self.image = image
 
     def update(self, window):
         self.draw(window)
