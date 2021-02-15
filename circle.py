@@ -9,6 +9,10 @@ class Circle:
         self.color = color
         self.grow_speed = 1  # 0 if not growing
 
+    def contains(self, point):
+        x, y = point
+        return (y - self.y)**2 + (x - self.x)**2 < self.radius**2
+
     def update(self, window):
         self.draw(window)
         self.radius += self.grow_speed
