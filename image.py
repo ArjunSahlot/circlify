@@ -1,15 +1,21 @@
 import pygame
 import random
+from constants import *
 from circle import Circle
 
 
 class Image:
     def __init__(self, x, y, width, height):
         self.x, self.y, self.width, self.height = x, y, width, height
-        self.image = None  # Make this a pygame.Surface with text on it saying circlify
+        # Create image with CIRCLIFY on it
+        self.image = pygame.Surface((self.width, self.height))
+        self.image.fill((0, 0, 0))
+        text = pygame.font.SysFont("comicsans", 120).render("CIRCLIFY", 1, WHITE)
+        self.image.blit(text, (self.width//2 - text.get_width()//2, self.height//2 - text.get_height()//2))
+
         self.circles = []
         self.circle_spawn_rate = 1  # Lower for higher resolution.
-        self.active = True
+        self.showing_image = False
 
     def update(self, window):
         self.draw(self, window)
@@ -32,8 +38,8 @@ class Image:
             circle.stop()
 
     def draw(self, window):
-        if self.active:
+        if self.showing_image:
+            window.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
+        else:
             for circle in self.circles:
                 circle.draw(window)
-        else:
-            window.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
