@@ -18,7 +18,7 @@ class Circle:
         self.radius += self.grow_speed
 
     def grow(self):
-        self.grow_speed = 1
+        self.radius += self.grow_speed
 
     def stop(self):
         self.grow_speed = 0

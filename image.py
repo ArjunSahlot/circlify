@@ -20,6 +20,9 @@ class Image:
 
     def update(self, window):
         self.draw(self, window)
+        if self.growing:
+            for circle in self.circles:
+                circle.grow()
 
     def spawn(self):
         for _ in range(self.circle_spawn_rate):
