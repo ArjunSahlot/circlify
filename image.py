@@ -15,6 +15,12 @@ class Image:
     def spawn(self):
         pass
 
+    def in_circles(self, point):
+        for circle in self.circles:
+            if circle.contains(point): return True
+
+        return False
+
     def finish(self):
         for circle in self.circles:
             circle.stop()
