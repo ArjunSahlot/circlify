@@ -16,6 +16,7 @@ class Image:
         self.circles = []
         self.circle_spawn_rate = 1  # Lower for higher resolution.
         self.showing_image = False
+        self.growing = True
 
     def update(self, window):
         self.draw(self, window)
