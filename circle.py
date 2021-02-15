@@ -11,6 +11,13 @@ class Circle:
 
     def update(self, window):
         self.draw(window)
+        self.radius += self.grow_speed
+
+    def grow(self):
+        self.grow_speed = 1
+
+    def stop(self):
+        self.grow_speed = 0
 
     def draw(self, window):
         pygame.draw.circle(window, self.color, (self.x, self.y), self.radius)
