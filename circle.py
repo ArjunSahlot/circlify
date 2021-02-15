@@ -1,4 +1,5 @@
 import pygame
+from pygame import gfxdraw
 pygame.init()
 
 
@@ -28,4 +29,5 @@ class Circle:
         self.grow_speed = 0
 
     def draw(self, window):
-        pygame.draw.circle(window, self.color, (self.x, self.y), self.radius)
+        gfxdraw.aacircle(window, self.x, self.y, self.radius, self.color)
+        gfxdraw.filled_circle(window, self.x, self.y, self.radius, self.color)

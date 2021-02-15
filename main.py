@@ -15,7 +15,7 @@ def main(window):
 
     while True:
         clock.tick(FPS)
-        window.fill(BLACK)
+        window.fill(WHITE)
         events = pygame.event.get()
         image.update(window)
         keys = pygame.key.get_pressed()

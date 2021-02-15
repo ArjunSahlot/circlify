@@ -8,6 +8,7 @@ class Image:
     def __init__(self, x, y, width, height):
         self.x, self.y, self.width, self.height = x, y, width, height
         self.image = None
+        self.background = BLACK
 
         # Create image with CIRCLIFY on it
         image = pygame.Surface((width, height))
@@ -17,18 +18,19 @@ class Image:
 
         self.open = []
         self.circles: "list[Circle]" = []
-        self.circle_spawn_rate = 10  # Lower for higher resolution.
+        self.circle_spawn_rate = 20  # Lower for higher resolution.
         self.showing_image = False
         self.growing = True
 
         self.set_image(image, WHITE)
 
-    def set_image(self, image, color="ANY"):
+    def set_image(self, image, color="ANY", background=BLACK):
         self.circles.clear()
         image = pygame.transform.scale(image, (self.width, self.height))
         image.set_alpha(0)
         w, h = image.get_size()
         self.image = image
+        self.background = background
         if color == "ANY":
             self.open = [(x, y) for x in range(w) for y in range(y)]
             return
@@ -85,5 +87,6 @@ class Image:
         if self.showing_image:
             window.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
         else:
+            pygame.draw.rect(window, self.background, (self.x, self.y, self.width, self.height))
             for circle in self.circles:
                 circle.draw(window)
