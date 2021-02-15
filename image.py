@@ -1,4 +1,6 @@
 import pygame
+import random
+from circle import Circle
 
 
 class Image:
@@ -13,7 +15,11 @@ class Image:
         self.draw(self, window)
 
     def spawn(self):
-        pass
+        for _ in range(self.circle_spawn_rate):
+            x, y = random.randint(self.width, self.height)
+            while self.in_circles((x, y)):
+                x, y = random.randint(self.width, self.height)
+            self.circles.append(Circle(x, y, self.image.get_at((x, y))))
 
     def in_circles(self, point):
         for circle in self.circles:
