@@ -17,7 +17,7 @@ class Image:
 
         self.open = []
         self.circles: "list[Circle]" = []
-        self.circle_spawn_rate = 1  # Lower for higher resolution.
+        self.circle_spawn_rate = 10  # Lower for higher resolution.
         self.showing_image = False
         self.growing = True
 
@@ -75,7 +75,7 @@ class Image:
     def update_collisions(self):
         if len(self.circles) > 1:
             for i in range(len(self.circles)-1):
-                for j in range(i, len(self.circles)):
+                for j in range(i+1, len(self.circles)):
                     c1, c2 = self.circles[i], self.circles[j]
                     if c1.collide(c2):
                         c1.stop()
