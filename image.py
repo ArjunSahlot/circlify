@@ -15,7 +15,7 @@ class Image:
         text = pygame.font.SysFont("comicsans", 120).render("CIRCLIFY", 1, WHITE)
         image.blit(text, (width//2 - text.get_width()//2, height//2 - text.get_height()//2))
 
-        self.open: list = None
+        self.open = []
         self.circles: "list[Circle]" = []
         self.circle_spawn_rate = 1  # Lower for higher resolution.
         self.showing_image = False
@@ -34,7 +34,7 @@ class Image:
         buffer = 5  # the buffer for a pixel to be desired
         for x in range(w):
             for y in range(h):
-                r, g, b = image.get_at((x, y))
+                r, g, b, _ = image.get_at((x, y))
                 for val in (dr - r, dg - g, db - b):
                     if val <= buffer:
                         self.open.append((x, y))
@@ -48,14 +48,18 @@ class Image:
 
     def spawn(self):
         for _ in range(self.circle_spawn_rate):
-            x, y = self.open.pop(random.randrange(len(self.open)))
-            attempts = 0
-            while self.in_circles((x + self.x, y + self.y)):
+            if self.open:
                 x, y = self.open.pop(random.randrange(len(self.open)))
-                attempts += 1
-                if attempts > 1000:
+            else:
+                self.growing = False
+                return
+            while self.in_circles((x + self.x, y + self.y)):
+                if self.open:
+                    x, y = self.open.pop(random.randrange(len(self.open)))
+                else:
                     self.growing = False
                     return
+
             self.circles.append(Circle(x + self.x, y + self.y, self.image.get_at((x, y))))
 
     def in_circles(self, point):
