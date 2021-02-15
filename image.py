@@ -12,6 +12,9 @@ class Image:
     def update(self, window):
         self.draw(self, window)
 
+    def spawn(self):
+        pass
+
     def finish(self):
         for circle in self.circles:
             circle.stop()
