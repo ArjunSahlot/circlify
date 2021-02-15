@@ -45,6 +45,7 @@ class Image:
             self.spawn()
             for circle in self.circles:
                 circle.grow()
+            self.update_collisions()
 
     def spawn(self):
         for _ in range(self.circle_spawn_rate):
@@ -68,9 +69,14 @@ class Image:
 
         return False
 
-    def finish(self):
-        for circle in self.circles:
-            circle.stop()
+    def update_collisions(self):
+        if len(self.circles) > 1:
+            for i in range(len(self.circles)-1):
+                for j in range(i, len(self.circles)):
+                    c1, c2 = self.circles[i], self.circles[j]
+                    if c1.collide(c2):
+                        c1.stop()
+                        c2.stop()
 
     def draw(self, window):
         if self.showing_image:
