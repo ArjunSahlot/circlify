@@ -15,7 +15,7 @@ class Image:
         text = pygame.font.SysFont("comicsans", 120).render("CIRCLIFY", 1, WHITE)
         image.blit(text, (width//2 - text.get_width()//2, height//2 - text.get_height()//2))
 
-        self.open = [(x, y) for x in range(width) for y in range(height)]
+        self.open = None
         self.circles: "list[Circle]" = []
         self.circle_spawn_rate = 1  # Lower for higher resolution.
         self.showing_image = False
@@ -28,10 +28,16 @@ class Image:
         image = pygame.transform.scale(image, (self.width, self.height))
         image.set_alpha(0)
         self.image = image
+        self.open.clear()
         w, h = image.get_size()
+        dr, dg, db = color  # desired r, g, b
+        buffer = 5  # the buffer for a pixel to be desired
         for x in range(w):
             for y in range(h):
                 r, g, b = image.get_at((x, y))
+                for val in (dr - r, dg - g, db - b):
+                    if val <= buffer:
+                        self.open.append((x, y))
 
     def update(self, window):
         self.draw(window)
