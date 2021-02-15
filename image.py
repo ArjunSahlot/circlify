@@ -16,6 +16,5 @@ class Image:
         if self.active:
             for circle in self.circles:
                 circle.draw(window)
-
         else:
             window.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
