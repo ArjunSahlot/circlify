@@ -12,6 +12,10 @@ class Image:
     def update(self, window):
         self.draw(self, window)
 
+    def finish(self):
+        for circle in self.circles:
+            circle.stop()
+
     def draw(self, window):
         if self.active:
             for circle in self.circles:
