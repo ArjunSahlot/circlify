@@ -21,6 +21,7 @@ class Image:
     def update(self, window):
         self.draw(window)
         if self.growing:
+            self.spawn()
             for circle in self.circles:
                 circle.grow()
 
