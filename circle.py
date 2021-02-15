@@ -13,6 +13,10 @@ class Circle:
         x, y = point
         return (y - self.y)**2 + (x - self.x)**2 < self.radius**2
 
+    def collide(self, other):
+        dist = (self.x - other.x)**2 + (self.y - other.y)**2
+        return dist <= (self.radius + other.radius) ** 2
+
     def update(self, window):
         self.draw(window)
         self.radius += self.grow_speed

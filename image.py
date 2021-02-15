@@ -12,7 +12,7 @@ class Image:
         # Create image with CIRCLIFY on it
         image = pygame.Surface((width, height))
         image.fill((0, 0, 0))
-        text = pygame.font.SysFont("comicsans", 120).render("CIRCLIFY", 1, WHITE)
+        text = pygame.font.SysFont("comicsans", 250).render("CIRCLIFY", 1, WHITE)
         image.blit(text, (width//2 - text.get_width()//2, height//2 - text.get_height()//2))
 
         self.open = []
@@ -23,13 +23,16 @@ class Image:
 
         self.set_image(image, WHITE)
 
-    def set_image(self, image, color):
+    def set_image(self, image, color="ANY"):
         self.circles.clear()
         image = pygame.transform.scale(image, (self.width, self.height))
         image.set_alpha(0)
-        self.image = image
-        self.open.clear()
         w, h = image.get_size()
+        self.image = image
+        if color == "ANY":
+            self.open = [(x, y) for x in range(w) for y in range(y)]
+            return
+        self.open.clear()
         dr, dg, db = color  # desired r, g, b
         buffer = 5  # the buffer for a pixel to be desired
         for x in range(w):
