@@ -14,7 +14,6 @@ class Image:
         image.fill((0, 0, 0))
         text = pygame.font.SysFont("comicsans", 120).render("CIRCLIFY", 1, WHITE)
         image.blit(text, (width//2 - text.get_width()//2, height//2 - text.get_height()//2))
-        self.set_image(image, WHITE)
 
         self.open = [(x, y) for x in range(width) for y in range(height)]
         self.circles: "list[Circle]" = []
@@ -22,10 +21,17 @@ class Image:
         self.showing_image = False
         self.growing = True
 
+        self.set_image(image, WHITE)
+
     def set_image(self, image, color):
         self.circles.clear()
         image = pygame.transform.scale(image, (self.width, self.height))
+        image.set_alpha(0)
         self.image = image
+        w, h = image.get_size()
+        for x in range(w):
+            for y in range(h):
+                r, g, b = image.get_at((x, y))
 
     def update(self, window):
         self.draw(window)
