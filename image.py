@@ -4,3 +4,9 @@ import pygame
 class Image:
     def __init__(self, x, y, width, height):
         self.x, self.y, self.width, self.height = x, y, width, height
+
+    def update(self, window):
+        self.draw(self, window)
+
+    def draw(self, window):
+        pass
