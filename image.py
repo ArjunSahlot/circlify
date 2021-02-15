@@ -59,9 +59,14 @@ class Image:
             else:
                 self.growing = False
                 return
+            attempts = 0
             while self.in_circles((x + self.x, y + self.y)):
                 if self.open:
                     x, y = self.open.pop(random.randrange(len(self.open)))
+                    attempts += 1
+                    if attempts > 20:
+                        self.growing = False
+                        return
                 else:
                     self.growing = False
                     return
