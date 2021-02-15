@@ -1,6 +1,4 @@
-import pygame
 from pygame import gfxdraw
-pygame.init()
 
 
 class Circle:

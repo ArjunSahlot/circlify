@@ -84,9 +84,11 @@ class Image:
             for i in range(len(self.circles)-1):
                 for j in range(i+1, len(self.circles)):
                     c1, c2 = self.circles[i], self.circles[j]
-                    if c1.collide(c2):
-                        c1.stop()
-                        c2.stop()
+                    rad_sum = c1.radius + c2.radius
+                    if abs(c1.x - c2.x) < rad_sum and abs(c1.y - c2.y) < rad_sum:
+                        if c1.collide(c2):
+                            c1.stop()
+                            c2.stop()
 
     def draw(self, window):
         if self.showing_image:
