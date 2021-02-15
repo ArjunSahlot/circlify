@@ -19,7 +19,7 @@ class Image:
         self.growing = True
 
     def update(self, window):
-        self.draw(self, window)
+        self.draw(window)
         if self.growing:
             for circle in self.circles:
                 circle.grow()
