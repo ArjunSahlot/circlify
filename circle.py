@@ -2,9 +2,9 @@ from pygame import gfxdraw
 
 
 class Circle:
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, color, radius=0):
         self.x, self.y = x, y
-        self.radius = 0
+        self.radius = radius
         self.color = color
         self.grow_speed = 1  # 0 if not growing
 
