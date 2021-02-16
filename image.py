@@ -18,7 +18,7 @@ class Image:
 
         self.open = []
         self.circles: "list[Circle]" = []
-        self.circle_spawn_rate = 20  # Lower for higher resolution.
+        self.circle_spawn_rate = 20  # Higher for higher resolution.
         self.showing_image = False
         self.growing = True
 
