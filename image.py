@@ -58,6 +58,7 @@ class Image:
             radii = (30, 25, 20, 15, 10, 5, 2)
             while any([True in row for row in open]):
                 rad = random.choice(radii)
+                attempts = 0
         else:
             if self.growing and not self.showing_image:
                 self.spawn()
