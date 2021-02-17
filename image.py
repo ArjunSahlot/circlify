@@ -54,6 +54,9 @@ class Image:
         self.draw(window)
         if self.using_cam:
             self.image = pygame.surfarray.make_surface(cv2.cvtColor(self.camera.read()[1], cv2.COLOR_BGR2RGB).swapaxes(1, 0))
+            radii = (30, 25, 20, 15, 10, 5, 2)
+            while self.open:
+                rad = random.choice(radii)
         else:
             if self.growing and not self.showing_image:
                 self.spawn()
