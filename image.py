@@ -23,7 +23,7 @@ class Image:
         self.circle_spawn_rate = 20  # Higher for higher resolution.
         self.using_cam = True
         self.camera = cv2.VideoCapture(0)
-        self.showing_image = True
+        self.showing_image = False
         self.growing = True
 
         self.set_image(image, WHITE)
@@ -57,10 +57,24 @@ class Image:
             open = [[True for _ in range(self.width)] for _ in range(self.height)]
             radii = (30, 25, 20, 15, 10, 5, 2)
             while any([True in row for row in open]):
-                possible = [(y, x) for x in range(self.width) for y in range(self.height) if open[y][x]]
+                possible = [(y, x) for x in range(self.image.get_width()) for y in range(self.image.get_height()) if open[y][x]]
                 rad = random.choice(radii)
                 attempts = 0
                 y, x = possible.pop(random.randrange(len(possible)))
+                while self.circle_collides(Circle(x, y, (0, 0, 0), rad)):
+                    y, x = possible.pop(random.randrange(len(possible)))
+                    attempts += 1
+                    if attempts > 10:
+                        break
+                if attempts > 10:
+                    if rad == 2:
+                        return
+                    break
+                self.circles.append(Circle(x, y, self.image.get_at((x, y)), rad))
+                for rx in range(x-rad, x+rad):
+                    for ry in range(y-rad, y+rad):
+                        if (rx - x)**2 + (ry - y)**2 < rad**2:
+                            open[rx][ry] = False
 
         else:
             if self.growing and not self.showing_image:
