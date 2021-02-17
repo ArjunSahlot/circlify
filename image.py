@@ -57,8 +57,11 @@ class Image:
             open = [[True for _ in range(self.width)] for _ in range(self.height)]
             radii = (30, 25, 20, 15, 10, 5, 2)
             while any([True in row for row in open]):
+                possible = [(y, x) for x in range(self.width) for y in range(self.height) if open[y][x]]
                 rad = random.choice(radii)
                 attempts = 0
+                y, x = possible.pop(random.randrange(len(possible)))
+                
         else:
             if self.growing and not self.showing_image:
                 self.spawn()
