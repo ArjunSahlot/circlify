@@ -1,6 +1,7 @@
 import pygame
 import random
 import cv2
+import atexit
 from constants import *
 from circle import Circle
 
@@ -26,6 +27,8 @@ class Image:
         self.growing = True
 
         self.set_image(image, WHITE)
+
+        atexit.register(getattr(self.camera, "release"))
 
     def set_image(self, image, color="ANY", background=BLACK):
         self.circles.clear()
