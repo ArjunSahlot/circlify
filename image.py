@@ -61,7 +61,7 @@ class Image:
                 rad = random.choice(radii)
                 attempts = 0
                 y, x = possible.pop(random.randrange(len(possible)))
-                
+
         else:
             if self.growing and not self.showing_image:
                 self.spawn()
