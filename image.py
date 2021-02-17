@@ -106,6 +106,8 @@ class Image:
             self.circles.append(Circle(x + self.x, y + self.y, self.image.get_at((x, y))))
 
     def circle_collides(self, circle: Circle):
+        if not (0 < circle.x - circle.radius < self.width) or not (0 < circle.y - circle.radius < self.height):
+            return True
         for c in self.circles:
             rad_sum = c.radius + circle.radius
             if abs(c.x - circle.x) < rad_sum or abs(c.y - circle.y) < rad_sum:
