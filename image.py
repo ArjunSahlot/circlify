@@ -1,5 +1,6 @@
 import pygame
 import random
+import cv2
 from constants import *
 from circle import Circle
 
@@ -19,7 +20,9 @@ class Image:
         self.open = []
         self.circles: "list[Circle]" = []
         self.circle_spawn_rate = 20  # Higher for higher resolution.
-        self.showing_image = False
+        self.using_cam = True
+        self.camera = cv2.VideoCapture(0)
+        self.showing_image = True
         self.growing = True
 
         self.set_image(image, WHITE)
@@ -46,11 +49,14 @@ class Image:
 
     def update(self, window):
         self.draw(window)
-        if self.growing and not self.showing_image:
-            self.spawn()
-            for circle in self.circles:
-                circle.grow()
-            self.update_collisions()
+        if self.using_cam:
+            self.image = pygame.surfarray.make_surface(cv2.cvtColor(self.camera.read()[1], cv2.COLOR_BGR2RGB).swapaxes(1, 0))
+        else:
+            if self.growing and not self.showing_image:
+                self.spawn()
+                for circle in self.circles:
+                    circle.grow()
+                self.update_collisions()
 
     def spawn(self):
         for _ in range(self.circle_spawn_rate):
