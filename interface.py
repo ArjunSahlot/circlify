@@ -5,7 +5,6 @@ pygame.init()
 
 
 class Interface:
-    def __init__(self):
-        self.start_x = self.start_y = 0
-        self.im_size = HEIGHT
-        self.x, self.y = HEIGHT, 0
+    start_x = start_y = 0
+    im_size = HEIGHT
+    x, y = HEIGHT, 0
