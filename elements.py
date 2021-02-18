@@ -2,4 +2,5 @@ import pygame
 
 
 class Button:
-    pass
+    def __init__(self):
+        pass
