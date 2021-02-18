@@ -3,4 +3,5 @@ from image import Image
 
 
 class Interface:
-    pass
+    def __init__(self):
+        pass
