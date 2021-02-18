@@ -65,9 +65,9 @@ class Image:
                 while self.circle_collides(Circle(x, y, (0, 0, 0), rad)):
                     y, x = possible.pop(random.randrange(len(possible)))
                     attempts += 1
-                    if attempts > 10:
+                    if attempts > 1:
                         break
-                if attempts > 10:
+                if attempts > 1:
                     if rad == 2:
                         return
                     break
@@ -75,7 +75,10 @@ class Image:
                 for rx in range(x-rad, x+rad):
                     for ry in range(y-rad, y+rad):
                         if (rx - x)**2 + (ry - y)**2 < rad**2:
-                            open[rx][ry] = False
+                            try:
+                                open[rx][ry] = False
+                            except:
+                                pass
 
         else:
             if self.growing and not self.showing_image:
