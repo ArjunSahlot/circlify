@@ -54,31 +54,31 @@ class Image:
         self.draw(window)
         if self.using_cam:
             self.image = pygame.transform.scale(pygame.surfarray.make_surface(cv2.cvtColor(self.camera.read()[1], cv2.COLOR_BGR2RGB).swapaxes(1, 0)), (self.width, self.height))
-            self.circles.clear()
-            open = [[True for _ in range(self.width)] for _ in range(self.height)]
-            radii = (30, 25, 20, 15, 10, 5, 2)
-            while any([True in row for row in open]):
-                possible = [(y, x) for x in range(self.width) for y in range(self.height) if open[y][x]]
-                rad = random.choice(radii)
-                attempts = 0
-                y, x = possible.pop(random.randrange(len(possible)))
-                while self.circle_collides(Circle(x, y, (0, 0, 0), rad)):
-                    y, x = possible.pop(random.randrange(len(possible)))
-                    attempts += 1
-                    if attempts > 1:
-                        break
-                if attempts > 1:
-                    if rad == 2:
-                        return
-                    break
-                self.circles.append(Circle(x, y, self.image.get_at((x, y)), rad))
-                for rx in range(x-rad, x+rad):
-                    for ry in range(y-rad, y+rad):
-                        if (rx - x)**2 + (ry - y)**2 < rad**2:
-                            try:
-                                open[rx][ry] = False
-                            except:
-                                pass
+            # self.circles.clear()
+            # open = [[True for _ in range(self.width)] for _ in range(self.height)]
+            # radii = (30, 25, 20, 15, 10, 5, 2)
+            # while any([True in row for row in open]):
+            #     possible = [(y, x) for x in range(self.width) for y in range(self.height) if open[y][x]]
+            #     rad = random.choice(radii)
+            #     attempts = 0
+            #     y, x = possible.pop(random.randrange(len(possible)))
+            #     while self.circle_collides(Circle(x, y, (0, 0, 0), rad)):
+            #         y, x = possible.pop(random.randrange(len(possible)))
+            #         attempts += 1
+            #         if attempts > 1:
+            #             break
+            #     if attempts > 1:
+            #         if rad == 2:
+            #             return
+            #         break
+            #     self.circles.append(Circle(x, y, self.image.get_at((x, y)), rad))
+            #     for rx in range(x-rad, x+rad):
+            #         for ry in range(y-rad, y+rad):
+            #             if (rx - x)**2 + (ry - y)**2 < rad**2:
+            #                 try:
+            #                     open[rx][ry] = False
+            #                 except:
+            #                     pass
 
         else:
             if self.growing and not self.showing_image:
