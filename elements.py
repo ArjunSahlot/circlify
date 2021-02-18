@@ -37,3 +37,8 @@ class Button:
     def hovered(self):
         mx, my = pygame.mouse.get_pos()
         return self.x <= mx <= self.x + self.width and self.y <= my <= self.y + self.height
+
+
+class ImgButton:
+    def __init__(self):
+        pass
