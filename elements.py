@@ -48,4 +48,6 @@ class ImgButton:
     }
 
     def __init__(self, x, y, width, height, surf, border):
-        pass
+        self.x, self.y, self.width, self.height = x, y, width, height
+        self.surf = surf
+        self.border = border
