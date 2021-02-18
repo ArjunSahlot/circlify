@@ -5,5 +5,6 @@ from image import Image
 
 class Interface:
     def __init__(self):
-        self.x = self.y = 0
+        self.start_x = self.start_y = 0
         self.im_size = HEIGHT
+        self.x, self.y = HEIGHT, 0
