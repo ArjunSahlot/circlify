@@ -1,4 +1,5 @@
 import pygame
 
 
-# Button, Color picker
+class Button:
+    pass
