@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from image import Image
+pygame.init()
 
 
 class Interface:
