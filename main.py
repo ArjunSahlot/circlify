@@ -1,6 +1,6 @@
 import pygame
 from constants import *
-from image import Image
+from interface import Interface
 
 
 # Window Management
@@ -11,13 +11,13 @@ pygame.display.set_caption("Circlify")
 def main(window):
     pygame.init()
     clock = pygame.time.Clock()
-    image = Image(0, 0, HEIGHT, HEIGHT)
+    interface = Interface()
 
     while True:
         clock.tick(FPS)
         window.fill(WHITE)
         events = pygame.event.get()
-        image.update(window)
+        interface.update(window, events)
         keys = pygame.key.get_pressed()
         ctrl_pressed = keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]
         for event in events:
