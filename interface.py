@@ -6,7 +6,7 @@ pygame.init()
 
 class Interface:
     start_x = start_y = 0
-    im_size = HEIGHT
+    image = Image(start_x, start_y, HEIGHT, HEIGHT)
     x, y = HEIGHT, 0
 
     def update(self, window, events):
