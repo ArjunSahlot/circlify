@@ -2,7 +2,7 @@ import pygame
 
 
 class Button:
-    self.colors = {
+    colors = {
         "bg": (0,) * 3,
         "border": (255,) * 3,
         "text": (255,) * 3,
