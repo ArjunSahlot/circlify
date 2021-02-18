@@ -5,16 +5,16 @@ pygame.init()
 class Button:
 
     colors = {
-        "bg": (0,) * 3,
-        "border": (255,) * 3,
-        "text": (255,) * 3,
-        "highlight": (100, 100, 100),
+        "bg": (255,) * 3,
+        "border": (0,) * 3,
+        "text": (0,) * 3,
+        "highlight": (180,)*3,
     }
 
     def __init__(self, x, y, width, height=50, text="Button", border=0):
         self.x, self.y, self.width, self.height = x, y, width, height
         self.text = text
-        self.font = pygame.font.SysFont("comicsans", height*5//9)
+        self.font = pygame.font.SysFont("comicsans", height-5)
         self.padding = height/5
         self.border = border
 
