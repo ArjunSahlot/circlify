@@ -18,7 +18,7 @@ class Button:
         self.padding = height/5
         self.border = border
 
-    def update(self, window, events=None):
+    def update(self, window):
         self.draw(window)
 
     def clicked(self, events):
