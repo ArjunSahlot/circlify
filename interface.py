@@ -10,7 +10,4 @@ class Interface:
     x, y = HEIGHT, 0
 
     def update(self, window, events):
-        self.draw(window)
-
-    def draw(self, window):
-        pass
+        self.image.update(window)
