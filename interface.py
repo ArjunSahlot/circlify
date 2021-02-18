@@ -4,4 +4,4 @@ from image import Image
 
 class Interface:
     def __init__(self):
-        pass
+        self.x = self.y = 0
