@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from elements import Button
 from image import Image
 pygame.init()
 
