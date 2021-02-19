@@ -57,7 +57,14 @@ class ImgButton:
         self.draw(window)
 
     def draw(self, window):
-        pass
+        pygame.draw.rect(window, self.constants["bg"], (self.x, self.y, self.width, self.height))
+        window.blit(self.surf, (self.x + self.width/2 - self.surf.get_width()/2, self.y + self.height/2 - self.surf.get_height()/2))
+        if self.hovered():
+            surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+            surf.fill(self.constants["highlight"])
+            window.blit(surf, (self.x, self.y))
+        if self.border:
+            pygame.draw.rect(window, self.constants["border"], (self.x, self.y, self.width, self.height), self.border)
 
     def hovered(self):
         mx, my = pygame.mouse.get_pos()
