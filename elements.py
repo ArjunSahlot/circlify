@@ -1,3 +1,4 @@
+import os
 import pygame
 import numpy as np
 from colorsys import rgb_to_hsv, hsv_to_rgb
