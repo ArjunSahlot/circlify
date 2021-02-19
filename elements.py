@@ -75,3 +75,8 @@ class ImgButton:
             for event in events:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return event.button == 1
+
+
+class ColorPicker:
+    def __init__(self):
+        pass
