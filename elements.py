@@ -55,3 +55,6 @@ class ImgButton:
 
     def update(self, window, events):
         pass
+
+    def draw(self, window):
+        pass
