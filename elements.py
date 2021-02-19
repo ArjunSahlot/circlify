@@ -45,6 +45,7 @@ class ImgButton:
         "bg": (255,) * 3,
         "border": (0,) * 3,
         "highlight": (180,)*3,
+        "padding": 5
     }
 
     def __init__(self, x, y, width, height, surf, border):
