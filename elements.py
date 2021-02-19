@@ -4,7 +4,7 @@ pygame.init()
 
 class Button:
 
-    colors = {
+    constants = {
         "bg": (255,) * 3,
         "border": (0,) * 3,
         "text": (0,) * 3,
@@ -28,9 +28,9 @@ class Button:
                     return event.button == 1
 
     def draw(self, window):
-        pygame.draw.rect(window, self.colors["highlight" if self.hovered() else "bg"], (self.x, self.y, self.width, self.height))
-        if self.border: pygame.draw.rect(window, self.colors["border"], (self.x, self.y, self.width, self.height), self.border, border_radius=1)
-        text = self.font.render(self.text, 1, self.colors["text"])
+        pygame.draw.rect(window, self.constants["highlight" if self.hovered() else "bg"], (self.x, self.y, self.width, self.height))
+        if self.border: pygame.draw.rect(window, self.constants["border"], (self.x, self.y, self.width, self.height), self.border, border_radius=1)
+        text = self.font.render(self.text, 1, self.constants["text"])
         loc = (self.x + self.width/2 - text.get_width()/2, self.y + self.height/2 - text.get_height()/2)
         window.blit(text, loc)
 
@@ -41,7 +41,7 @@ class Button:
 
 class ImgButton:
 
-    colors = {
+    constants = {
         "bg": (255,) * 3,
         "border": (0,) * 3,
         "highlight": (180,)*3,
