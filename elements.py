@@ -44,7 +44,7 @@ class ImgButton:
     constants = {
         "bg": (255,) * 3,
         "border": (0,) * 3,
-        "highlight": (180,)*3,
+        "highlight": (0, 0, 0, 180),
         "padding": 5,
     }
 
