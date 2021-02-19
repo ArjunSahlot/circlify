@@ -62,3 +62,9 @@ class ImgButton:
     def hovered(self):
         mx, my = pygame.mouse.get_pos()
         return self.x <= mx <= self.x + self.width and self.y <= my <= self.y + self.height
+
+    def clicked(self, events):
+        if self.hovered():
+            for event in events:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    return event.button == 1
