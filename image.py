@@ -21,7 +21,7 @@ class Image:
         self.open = []
         self.circles: "list[Circle]" = []
         self.circle_spawn_rate = 20  # Higher for higher resolution.
-        self.using_cam = False
+        self.using_cam = True
         self.camera = cv2.VideoCapture(0)
         self.showing_image = False
         self.growing = True
@@ -54,7 +54,7 @@ class Image:
         self.draw(window)
         if self.using_cam:
             self.image = pygame.transform.scale(pygame.surfarray.make_surface(cv2.cvtColor(self.camera.read()[1], cv2.COLOR_BGR2RGB).swapaxes(1, 0)), (self.width, self.height))
-            rad = random.choice((15, 10, 5))
+            rad = random.randint(10, 25)
             for x in range(rad, self.width-rad, rad*2):
                 for y in range(rad, self.height-rad, rad*2):
                     self.circles.append(Circle(x, y, self.image.get_at((x, y)), rad))
