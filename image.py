@@ -38,7 +38,7 @@ class Image:
         self.image = image
         self.background = background
         if color == "ANY":
-            self.open = [(x, y) for x in range(w) for y in range(y)]
+            self.open = [(x, y) for x in range(w) for y in range(h)]
             return
         self.open.clear()
         dr, dg, db = color  # desired r, g, b

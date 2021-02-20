@@ -2,6 +2,9 @@ import pygame
 from constants import *
 from elements import Button, ImgButton
 from image import Image
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename, asksaveasfilename
+Tk().withdraw()
 pygame.init()
 
 
@@ -16,5 +19,7 @@ class Interface:
     def update(self, window, events):
         self.image.update(window)
         self.imp.update(window)
+        if self.imp.clicked(events):
+            self.image.set_image(pygame.image.load(askopenfilename()))
         self.exp.update(window)
         self.settings.update(window, events)
