@@ -54,11 +54,11 @@ class Image:
         self.draw(window)
         if self.using_cam:
             self.image = pygame.transform.scale(pygame.surfarray.make_surface(cv2.cvtColor(self.camera.read()[1], cv2.COLOR_BGR2RGB).swapaxes(1, 0)), (self.width, self.height))
-            rad = random.randint(10, 25)
+            rad = random.randint(10, 15)
+            self.circles.clear()
             for x in range(rad, self.width-rad, rad*2):
                 for y in range(rad, self.height-rad, rad*2):
                     self.circles.append(Circle(x, y, self.image.get_at((x, y)), rad))
-
         else:
             if self.growing and not self.showing_image:
                 self.spawn()
