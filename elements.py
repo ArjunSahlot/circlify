@@ -62,7 +62,7 @@ class ImgButton:
 
     def draw(self, window):
         pygame.draw.rect(window, self.constants["bg"], (self.x, self.y, self.width, self.height))
-        window.blit(self.surf, (self.x + self.width/2 - self.surf.get_width()/2, self.y + self.height/2 - self.surf.get_height()/2))
+        window.blit(pygame.transform.rotate(self.surf, self.rot), (self.x + self.width/2 - self.surf.get_width()/2, self.y + self.height/2 - self.surf.get_height()/2))
         if self.hovered():
             surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
             surf.fill(self.constants["highlight"])
