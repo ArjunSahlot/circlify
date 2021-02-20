@@ -121,3 +121,12 @@ class Image:
             pygame.draw.rect(window, self.background, (self.x, self.y, self.width, self.height))
             for circle in self.circles:
                 circle.draw(window)
+
+    def render(self, bg=(0, 0, 0)):
+        surf = pygame.Surface((self.width, self.height))
+        surf.fill(bg)
+        prev = self.showing_image
+        self.showing_image = False
+        self.draw(surf)
+        self.showing_image = prev
+        return surf
