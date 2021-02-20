@@ -61,17 +61,19 @@ class ImgButton:
     def update(self, window, events):
         self.draw(window)
         if self.rotating:
-            if self.rot == 90:
+            if self.rot == -90:
                 self.rot = 0
                 self.rotating = False
             else:
-                self.rot += 1
+                self.rot -= 5
         if self.clicked(events):
             self.rotating = True
 
     def draw(self, window):
         pygame.draw.rect(window, self.constants["bg"], (self.x, self.y, self.width, self.height))
-        window.blit(pygame.transform.rotate(self.surf, self.rot), (self.x + self.width/2 - self.surf.get_width()/2, self.y + self.height/2 - self.surf.get_height()/2))
+        rot = pygame.transform.rotate(self.surf, self.rot)
+        rect = rot.get_rect(center=self.surf.get_rect(topleft=(self.x + self.width/2 - self.surf.get_width()/2, self.y + self.height/2 - self.surf.get_height()/2)).center)
+        window.blit(rot, rect.topleft)
         if self.hovered():
             surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
             surf.fill(self.constants["highlight"])
