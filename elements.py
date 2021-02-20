@@ -96,7 +96,7 @@ class ColorPicker:
         self._create_wheel()
         self._create_slider()
         self.update_wheel()
-    
+
     def set_wheel_cursor(self):
         if self.start is None:
             self.wheel_cursor = np.array((self.wheel_rad,)*2)
