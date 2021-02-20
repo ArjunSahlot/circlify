@@ -55,6 +55,7 @@ class ImgButton:
         self.x, self.y, self.width, self.height = x, y, width, height
         self.surf = pygame.transform.scale(surf, (self.width - self.constants["padding"]*2, self.height - self.constants["padding"]*2))
         self.border = border
+        self.rot = 0
 
     def update(self, window):
         self.draw(window)
