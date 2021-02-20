@@ -57,7 +57,7 @@ class ImgButton:
         self.border = border
         self.rot = 0
 
-    def update(self, window):
+    def update(self, window, events):
         self.draw(window)
 
     def draw(self, window):
