@@ -17,3 +17,4 @@ class Interface:
         self.image.update(window)
         self.imp.update(window)
         self.exp.update(window)
+        self.settings.update(window)
