@@ -22,4 +22,6 @@ class Interface:
         if self.imp.clicked(events):
             self.image.set_image(pygame.image.load(askopenfilename()))
         self.exp.update(window)
+        if self.exp.clicked(events):
+            pygame.image.save(self.image.render(), asksaveasfilename())
         self.settings.update(window, events)
