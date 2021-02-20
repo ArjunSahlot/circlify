@@ -113,6 +113,11 @@ class Image:
                         if c1.collide(c2):
                             c1.stop()
                             c2.stop()
+        for circle in self.circles:
+            if circle.grow_speed:
+                if circle.x - circle.radius < 0 or circle.x + circle.radius > self.width or \
+                    circle.y - circle.radius < 0 or circle.y + circle.radius > self.height:
+                    circle.stop()
 
     def draw(self, window):
         if self.showing_image:
