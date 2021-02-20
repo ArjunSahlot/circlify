@@ -60,6 +60,14 @@ class ImgButton:
 
     def update(self, window, events):
         self.draw(window)
+        if self.rotating:
+            if self.rot == 90:
+                self.rot = 0
+                self.rotating = False
+            else:
+                self.rot += 1
+        if self.clicked(events):
+            self.rotating = True
 
     def draw(self, window):
         pygame.draw.rect(window, self.constants["bg"], (self.x, self.y, self.width, self.height))
