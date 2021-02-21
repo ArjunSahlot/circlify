@@ -45,3 +45,5 @@ class Interface:
         window.blit(t2, (self.exp.x + self.exp.width + 10, self.exp.y + self.exp.height/2 - t2.get_height()/2))
         self.settings.update(window, events)
         self.refresh.update(window, events)
+        if self.refresh.clicked(events):
+            self.image.refresh()
