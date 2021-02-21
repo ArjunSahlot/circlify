@@ -129,19 +129,21 @@ class Image:
                     circle.y - circle.radius < 0 or circle.y + circle.radius > self.height:
                     circle.stop()
 
-    def draw(self):
+    def draw(self, surf=None):
+        if surf is None:
+            surf = self.window
         if self.showing_image:
-            self.window.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
+            surf.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
         else:
-            pygame.draw.rect(self.window, self.background, (self.x, self.y, self.width, self.height))
+            pygame.draw.rect(surf, self.background, (self.x, self.y, self.width, self.height))
             for circle in self.circles:
-                circle.draw(self.window)
+                circle.draw(surf)
 
     def render(self, bg=(0, 0, 0)):
         surf = pygame.Surface((self.width, self.height))
         surf.fill(bg)
         prev = self.showing_image
         self.showing_image = False
-        self.draw(surf)
+        self.draw()
         self.showing_image = prev
         return surf
