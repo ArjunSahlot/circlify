@@ -44,3 +44,4 @@ class Interface:
         t2 = self.font.render(self.exp_text, 1, RED if "Latest export" not in self.exp_text else BLACK)
         window.blit(t2, (self.exp.x + self.exp.width + 10, self.exp.y + self.exp.height/2 - t2.get_height()/2))
         self.settings.update(window, events)
+        self.refresh.update(window, events)
