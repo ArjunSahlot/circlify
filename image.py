@@ -7,7 +7,7 @@ from circle import Circle
 
 
 class Image:
-    def __init__(self, x, y, width, height, window):
+    def __init__(self, x, y, width, height, window: pygame.Surface):
         self.x, self.y, self.width, self.height = x, y, width, height
         self.image = None
         self.background = BLACK
@@ -15,9 +15,10 @@ class Image:
 
         # Create image with CIRCLIFY on it
         image = pygame.Surface((width, height))
+        self.font = lambda size: pygame.font.SysFont("comicsans", size)
         image.fill((0, 0, 0))
-        text = pygame.font.SysFont("comicsans", 250).render("CIRCLIFY", 1, WHITE)
-        image.blit(text, (width//2 - text.get_width()//2, height//2 - text.get_height()//2))
+        text = self.font(250).render("CIRCLIFY", 1, WHITE)
+        image.blit(text, (x + width//2 - text.get_width()//2, y + height//2 - text.get_height()//2))
 
         self.open = []
         self.circles: "list[Circle]" = []
@@ -32,6 +33,10 @@ class Image:
         atexit.register(getattr(self.camera, "release"))
 
     def set_image(self, image, color="ANY", background=BLACK):
+        self.window.fill((0, 0, 0), (self.x, self.y, self.width, self.height))
+        text = self.font(175).render("Calculating...", 1, WHITE)
+        self.window.blit(text, (self.x + self.width//2 - text.get_width()//2, self.y + self.height//2 - text.get_height()//2))
+        pygame.display.update()
         self.circles.clear()
         image = pygame.transform.scale(image, (self.width, self.height))
         image.set_alpha(0)
