@@ -7,10 +7,11 @@ from circle import Circle
 
 
 class Image:
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, width, height, window):
         self.x, self.y, self.width, self.height = x, y, width, height
         self.image = None
         self.background = BLACK
+        self.window = window
 
         # Create image with CIRCLIFY on it
         image = pygame.Surface((width, height))
@@ -50,8 +51,8 @@ class Image:
                     if val <= buffer:
                         self.open.append((x, y))
 
-    def update(self, window):
-        self.draw(window)
+    def update(self):
+        self.draw()
         if self.using_cam:
             self.image = pygame.transform.scale(pygame.surfarray.make_surface(cv2.cvtColor(self.camera.read()[1], cv2.COLOR_BGR2RGB).swapaxes(1, 0)), (self.width, self.height))
             rad = random.randint(5, 7)
@@ -119,13 +120,13 @@ class Image:
                     circle.y - circle.radius < 0 or circle.y + circle.radius > self.height:
                     circle.stop()
 
-    def draw(self, window):
+    def draw(self):
         if self.showing_image:
-            window.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
+            self.window.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
         else:
-            pygame.draw.rect(window, self.background, (self.x, self.y, self.width, self.height))
+            pygame.draw.rect(self.window, self.background, (self.x, self.y, self.width, self.height))
             for circle in self.circles:
-                circle.draw(window)
+                circle.draw(self.window)
 
     def render(self, bg=(0, 0, 0)):
         surf = pygame.Surface((self.width, self.height))

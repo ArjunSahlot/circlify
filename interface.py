@@ -12,7 +12,6 @@ pygame.init()
 class Interface:
     start_x = start_y = 0
     x, y = HEIGHT, 0
-    image = Image(start_x, start_y, HEIGHT, HEIGHT)
     imp = Button(x + 5, 5, 225, 65, "Import", 5)
     imp_text = "No file imported."
     exp = Button(imp.x, imp.y+imp.height + 5, imp.width, imp.height, "Export", imp.border)
@@ -20,8 +19,11 @@ class Interface:
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5)
     font = pygame.font.SysFont("comicsans", 50)
 
+    def __init__(self, window):
+        self.image = Image(self.start_x, self.start_y, HEIGHT, HEIGHT, window)
+
     def update(self, window, events):
-        self.image.update(window)
+        self.image.update()
         self.imp.update(window)
         if self.imp.clicked(events):
             try:

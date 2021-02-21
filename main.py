@@ -11,7 +11,7 @@ pygame.display.set_caption("Circlify")
 def main(window):
     pygame.init()
     clock = pygame.time.Clock()
-    interface = Interface()
+    interface = Interface(window)
 
     while True:
         clock.tick(FPS)
