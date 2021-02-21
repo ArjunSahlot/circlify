@@ -1,8 +1,9 @@
 import pygame
-from constants import *
-from elements import Button, ImgButton
-from image import Image
 from tkinter import Tk
+from image import Image
+from constants import *
+from datetime import datetime
+from elements import Button, ImgButton
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 Tk().withdraw()
 pygame.init()
@@ -32,7 +33,7 @@ class Interface:
         if self.exp.clicked(events):
             try:
                 pygame.image.save(self.image.render(), asksaveasfilename())
-                self.exp_text = f"Latest export: "
+                self.exp_text = f"Latest export: {}"
             except Exception as e:
                 self.exp_text = str(e)
         t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
