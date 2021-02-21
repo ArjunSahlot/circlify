@@ -17,6 +17,7 @@ class Interface:
     exp = Button(imp.x, imp.y+imp.height + 5, imp.width, imp.height, "Export", imp.border)
     exp_text = "Latest export: Never"
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5)
+    font = pygame.font.SysFont("comicsans", 50)
 
     def update(self, window, events):
         self.image.update(window)
