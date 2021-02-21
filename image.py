@@ -32,6 +32,9 @@ class Image:
 
         atexit.register(getattr(self.camera, "release"))
 
+    def refresh(self):
+        self.circles.clear()
+
     def set_image(self, image, color="ANY", background=BLACK):
         self.window.fill((0, 0, 0), (self.x, self.y, self.width, self.height))
         text = self.font(175).render("Calculating...", 1, WHITE)
