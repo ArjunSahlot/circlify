@@ -24,7 +24,8 @@ class Interface:
         self.imp.update(window)
         if self.imp.clicked(events):
             try:
-                self.image.set_image(pygame.image.load(askopenfilename()))
+                self.image.set_image(pygame.image.load(file := askopenfilename()))
+                self.imp_text = file.split("/")[-1]
             except Exception as e:
                 self.imp_text = str(e) if "()" not in str(e) else "Unable to import image"
         self.exp.update(window)
