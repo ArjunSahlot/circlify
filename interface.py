@@ -33,7 +33,7 @@ class Interface:
         if self.exp.clicked(events):
             try:
                 pygame.image.save(self.image.render(), asksaveasfilename())
-                self.exp_text = f"Latest export: {}"
+                self.exp_text = f"Latest export: {datetime.now().strftime('%I:%M:%S')}"
             except Exception as e:
                 self.exp_text = str(e)
         t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
