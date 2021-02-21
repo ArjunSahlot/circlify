@@ -34,6 +34,7 @@ class Image:
 
     def refresh(self):
         self.circles.clear()
+        self.growing = True
 
     def set_image(self, image, color="ANY", background=BLACK):
         self.window.fill((0, 0, 0), (self.x, self.y, self.width, self.height))
