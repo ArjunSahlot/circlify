@@ -51,21 +51,22 @@ class ImgButton:
         "padding": 5,
     }
 
-    def __init__(self, x, y, width, height, surf, border):
+    def __init__(self, x, y, width, height, surf, border, end):
         self.x, self.y, self.width, self.height = x, y, width, height
         self.surf = pygame.transform.scale(surf, (self.width - self.constants["padding"]*2, self.height - self.constants["padding"]*2))
         self.border = border
+        self.end = end
         self.rot = 0
         self.rotating = False
 
     def update(self, window, events):
         self.draw(window)
         if self.rotating:
-            if self.rot == -90:
+            if self.rot == -self.end:
                 self.rot = 0
                 self.rotating = False
             else:
-                self.rot -= 5
+                self.rot -= 5 * self.end/90
         if self.clicked(events):
             self.rotating = True
 
