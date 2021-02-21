@@ -189,3 +189,8 @@ class ColorPicker:
     def _draw_cursor(self, window, pos):
         pygame.draw.circle(window, (255, 255, 255), pos, self.cursor_rad)
         pygame.draw.circle(window, (0, 0, 0), pos, self.cursor_rad, 2)
+
+
+class Slider:
+    def __init__(self):
+        pass
