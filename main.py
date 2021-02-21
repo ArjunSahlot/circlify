@@ -11,6 +11,7 @@ pygame.display.set_caption("Circlify")
 def main(window):
     pygame.init()
     clock = pygame.time.Clock()
+    window.fill(WHITE)
     interface = Interface(window)
 
     while True:
