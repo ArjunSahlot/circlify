@@ -193,7 +193,7 @@ class ColorPicker:
 
 class Slider:
     colors = {
-        "text": (255,) * 3,
+        "text": (0,) * 3,
         "slider": (50,) * 3,
         "cursor": (130,) * 3,
         "arrows": (255,) * 3,
