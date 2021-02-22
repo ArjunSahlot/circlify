@@ -16,7 +16,7 @@ class Interface:
     imp_text = "No file imported."
     exp = Button(imp.x, imp.y+imp.height + 5, imp.width, imp.height, "Export", imp.border)
     exp_text = "Latest export: Never"
-    spawn = Slider(x + 5, exp.y + exp.height + 20, 500, 40, 1, (1, 300), "Circle Spawn Rate")
+    spawn = Slider(x + 5, exp.y + exp.height + 20, 500, 40, 20, (1, 300), "Circle Spawn Rate")
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
@@ -41,6 +41,7 @@ class Interface:
             except Exception as e:
                 self.exp_text = str(e)
         self.spawn.update(window, events)
+        self.image.circle_spawn_rate = self.spawn.value
         t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
         window.blit(t1, (self.imp.x + self.imp.width + 10, self.imp.y + self.imp.height/2 - t1.get_height()/2))
         t2 = self.font.render(self.exp_text, 1, RED if "Latest export" not in self.exp_text else BLACK)
