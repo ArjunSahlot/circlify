@@ -17,6 +17,8 @@ class Interface:
     exp = Button(imp.x, imp.y+imp.height + 5, imp.width, imp.height, "Export", imp.border)
     exp_text = "Latest export: Never"
     spawn = Slider(x + 5, exp.y + exp.height + 20, 500, 40, 20, (1, 100), "Circle Spawn Rate")
+    lower = Slider(x + 30, spawn.y + spawn.height + 50, spawn.width, spawn.height, 1, (1, 20), "Lower Bound")
+    upper = Slider(lower.x, lower.y + lower.height + 5, lower.width, lower.height, lower.value, lower.range, lower.label.replace("Lower", "Upper"))
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
