@@ -61,6 +61,7 @@ class Interface:
         pygame.draw.rect(window, BLACK, (self.lower.x - 10, self.lower.y - 10, self.spawn.width, 145), 5)
         text = self.small_font.render("Circle Growing Rate", 1, BLACK)
         window.blit(text, (self.lower.x - 10 + self.spawn.width/2 - text.get_width()/2, self.lower.y - 10 - 3 - text.get_height()))
+
         self.lower.update(window, events)
         self.upper.value = max(self.upper.value, self.lower.value)
         self.upper.update(window, events)
