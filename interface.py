@@ -25,6 +25,8 @@ class Interface:
 
     def __init__(self, window):
         self.image = Image(self.start_x, self.start_y, HEIGHT, HEIGHT, window)
+        self.spawn.value = self.image.circle_spawn_rate
+        self.upper.value, self.lower.value = self.image.grow_rate
 
     def update(self, window, events):
         self.image.update()
