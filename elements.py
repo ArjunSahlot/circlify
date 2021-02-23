@@ -124,6 +124,7 @@ class ColorPicker:
 
     def draw(self, window):
         pygame.draw.rect(window, self.get_rgb(), (*self.display_rect_loc, *self.display_rect_size))
+        pygame.draw.rect(window, (0, 0, 0), (*self.display_rect_loc, *self.display_rect_size), 1)
         window.blit(self.slider_surf, self.slider_pos)
         self._draw_cursor(window, np.array(self.slider_pos) + np.array(self.slider_cursor))
         window.blit(self.wheel_surf, self.wheel_pos)
