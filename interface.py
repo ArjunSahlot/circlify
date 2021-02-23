@@ -49,11 +49,11 @@ class Interface:
             except Exception as e:
                 self.exp_text = str(e)
 
-        t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
-        window.blit(t1, (self.imp.x + self.imp.width + 10, self.imp.y + self.imp.height/2 - t1.get_height()/2))
+        text = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
+        window.blit(text, (self.imp.x + self.imp.width + 10, self.imp.y + self.imp.height/2 - text.get_height()/2))
 
-        t2 = self.font.render(self.exp_text, 1, RED if "Latest export" not in self.exp_text else BLACK)
-        window.blit(t2, (self.exp.x + self.exp.width + 10, self.exp.y + self.exp.height/2 - t2.get_height()/2))
+        text = self.font.render(self.exp_text, 1, RED if "Latest export" not in self.exp_text else BLACK)
+        window.blit(text, (self.exp.x + self.exp.width + 10, self.exp.y + self.exp.height/2 - text.get_height()/2))
 
         self.spawn.update(window, events)
         self.image.circle_spawn_rate = self.spawn.value
