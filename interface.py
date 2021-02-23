@@ -16,7 +16,7 @@ class Interface:
     imp_text = "No file imported."
     exp = Button(imp.x, imp.y+imp.height + 5, imp.width, imp.height, "Export", imp.border)
     exp_text = "Latest export: Never"
-    spawn = Slider(x + 5, exp.y + exp.height + 20, 500, 40, 20, (1, 300), "Circle Spawn Rate")
+    spawn = Slider(x + 5, exp.y + exp.height + 20, 500, 40, 20, (1, 100), "Circle Spawn Rate")
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
