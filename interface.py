@@ -53,6 +53,7 @@ class Interface:
         self.lower.update(window, events)
         self.upper.value = max(self.upper.value, self.lower.value)
         self.upper.update(window, events)
+        self.image.grow_rate = (self.lower.value, self.upper.value)
 
         t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
         window.blit(t1, (self.imp.x + self.imp.width + 10, self.imp.y + self.imp.height/2 - t1.get_height()/2))
