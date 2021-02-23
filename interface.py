@@ -22,6 +22,7 @@ class Interface:
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
+    small_font = pygame.font.SysFont("comicsans", 30)
 
     def __init__(self, window):
         self.image = Image(self.start_x, self.start_y, HEIGHT, HEIGHT, window)
@@ -50,6 +51,9 @@ class Interface:
         self.spawn.update(window, events)
         self.image.circle_spawn_rate = self.spawn.value
 
+        pygame.draw.rect(window, BLACK, (self.lower.x - 10, self.lower.y - 10, self.spawn.width, 145), 5)
+        text = self.small_font.render("Circle Growing Rate", 1, BLACK)
+        window.blit(text, (self.lower.x - 10 + self.spawn.width/2 - text.get_width()/2, self.lower.y - 10 - 3 - text.get_height()))
         self.lower.update(window, events)
         self.upper.value = max(self.upper.value, self.lower.value)
         self.upper.update(window, events)
