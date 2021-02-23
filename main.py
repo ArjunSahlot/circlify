@@ -18,7 +18,6 @@ def main(window):
         clock.tick(FPS)
         window.fill(WHITE)
         events = pygame.event.get()
-        print(len(interface.image.circles))
         interface.update(window, events)
         keys = pygame.key.get_pressed()
         ctrl_pressed = keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]
