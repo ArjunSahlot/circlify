@@ -19,7 +19,7 @@ class Interface:
     spawn = Slider(x + 5, exp.y + exp.height + 20, 500, 40, 20, (1, 100), "Circle Spawn Rate")
     lower = Slider(x + 30, spawn.y + spawn.height + 80, spawn.width - (x + 30 - spawn.x)*2, spawn.height, 1, (1, 20), "Lower Bound")
     upper = Slider(lower.x, lower.y + lower.height + 25, lower.width, lower.height, lower.value, lower.range, lower.label.replace("Lower", "Upper"))
-    color = ColorPicker((x + 5, upper.y + upper.height + 50), 100, (x + 100*2 + 5 + 8, upper.y + upper.height + 50), (50, 200), False, False, 3, (x + 100*2 + 5 + 8 + 50 + 10, x + 100*2 + 5 + 8), (80, 200), None)
+    color = ColorPicker((x + 5, upper.y + upper.height + 50), 100, (x + 100*2 + 5 + 8, upper.y + upper.height + 50), (35, 200), False, False, 5, (x + 100*2 + 5 + 8 + 35 + 10, x + 100*2 + 5 + 8), (50, 200), None)
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
