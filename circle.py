@@ -14,7 +14,7 @@ class Circle:
 
     def collide(self, other):
         dist = (self.x - other.x)**2 + (self.y - other.y)**2
-        return dist <= (self.radius + other.radius) ** 2
+        return dist < (self.radius + other.radius) ** 2
 
     def update(self, window):
         self.draw(window)
