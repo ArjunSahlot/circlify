@@ -27,6 +27,7 @@ class Image:
         self.camera = cv2.VideoCapture(0)
         self.showing_image = False
         self.growing = True
+        self.grow_rate = (1, 1)  # (lower, higher) bounds
 
         self.set_image(image, WHITE)
 
