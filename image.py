@@ -60,6 +60,7 @@ class Image:
                 for val in (dr - r, dg - g, db - b):
                     if val <= buffer:
                         self.open.append((x, y))
+        self.growing = True
 
     def update(self):
         self.draw()
