@@ -48,6 +48,7 @@ class Image:
         w, h = image.get_size()
         self.image = image
         self.background = background
+        self.growing = True
         if color == "ANY":
             self.open = [(x, y) for x in range(w) for y in range(h)]
             return
@@ -60,7 +61,6 @@ class Image:
                 for val in (dr - r, dg - g, db - b):
                     if val <= buffer:
                         self.open.append((x, y))
-        self.growing = True
 
     def update(self):
         self.draw()
