@@ -19,6 +19,7 @@ class Interface:
     spawn = Slider(x + 5, exp.y + exp.height + 20, 500, 40, 20, (1, 100), "Circle Spawn Rate")
     lower = Slider(x + 30, spawn.y + spawn.height + 80, spawn.width - (x + 30 - spawn.x)*2, spawn.height, 1, (1, 20), "Lower Bound")
     upper = Slider(lower.x, lower.y + lower.height + 25, lower.width, lower.height, lower.value, lower.range, lower.label.replace("Lower", "Upper"))
+    color = ColorPicker((x + 5, upper.y + upper.height + 50), 100, (x + 100*2 + 5 + 8, upper.y + upper.height + 50), (50, 200), False, False, 3, (x + 100*2 + 5 + 8 + 50 + 10, x + 100*2 + 5 + 8), (80, 200))
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
@@ -48,6 +49,12 @@ class Interface:
             except Exception as e:
                 self.exp_text = str(e)
 
+        t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
+        window.blit(t1, (self.imp.x + self.imp.width + 10, self.imp.y + self.imp.height/2 - t1.get_height()/2))
+
+        t2 = self.font.render(self.exp_text, 1, RED if "Latest export" not in self.exp_text else BLACK)
+        window.blit(t2, (self.exp.x + self.exp.width + 10, self.exp.y + self.exp.height/2 - t2.get_height()/2))
+
         self.spawn.update(window, events)
         self.image.circle_spawn_rate = self.spawn.value
 
@@ -59,12 +66,6 @@ class Interface:
         self.upper.update(window, events)
         self.lower.value = min(self.lower.value, self.upper.value)
         self.image.grow_rate = (self.lower.value, self.upper.value)
-
-        t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
-        window.blit(t1, (self.imp.x + self.imp.width + 10, self.imp.y + self.imp.height/2 - t1.get_height()/2))
-
-        t2 = self.font.render(self.exp_text, 1, RED if "Latest export" not in self.exp_text else BLACK)
-        window.blit(t2, (self.exp.x + self.exp.width + 10, self.exp.y + self.exp.height/2 - t2.get_height()/2))
 
         self.settings.update(window, events)
 
