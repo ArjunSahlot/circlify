@@ -68,6 +68,8 @@ class Interface:
         self.lower.value = min(self.lower.value, self.upper.value)
         self.image.grow_rate = (self.lower.value, self.upper.value)
 
+        text = self.small_font.render("Circle Filling Color", 1, BLACK)
+        window.blit(text, (self.color.wheel_pos[0] + self.color.wheel_rad - text.get_width()/2, self.color.wheel_pos[1] - text.get_height() - 5))
         self.color.update(window)
 
         self.settings.update(window, events)
