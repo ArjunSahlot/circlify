@@ -2,6 +2,7 @@ import pygame
 from tkinter import Tk
 from image import Image
 from constants import *
+from webbrowser import open
 from datetime import datetime
 from elements import Button, ImgButton, Slider, ColorPicker
 from tkinter.filedialog import askopenfilename, asksaveasfilename
@@ -74,6 +75,8 @@ class Interface:
         self.color.update(window)
 
         self.link.update(window)
+        if self.link.clicked(events):
+            open("https://github.com/ArjunSahlot/pixel_painter")
 
         self.settings.update(window, events)
 
