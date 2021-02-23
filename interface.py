@@ -57,6 +57,7 @@ class Interface:
         self.lower.update(window, events)
         self.upper.value = max(self.upper.value, self.lower.value)
         self.upper.update(window, events)
+        self.lower.value = min(self.lower.value, self.upper.value)
         self.image.grow_rate = (self.lower.value, self.upper.value)
 
         t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
