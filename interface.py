@@ -17,8 +17,8 @@ class Interface:
     exp = Button(imp.x, imp.y+imp.height + 5, imp.width, imp.height, "Export", imp.border)
     exp_text = "Latest export: Never"
     spawn = Slider(x + 5, exp.y + exp.height + 20, 500, 40, 20, (1, 100), "Circle Spawn Rate")
-    lower = Slider(x + 30, spawn.y + spawn.height + 50, spawn.width, spawn.height, 1, (1, 20), "Lower Bound")
-    upper = Slider(lower.x, lower.y + lower.height + 5, lower.width, lower.height, lower.value, lower.range, lower.label.replace("Lower", "Upper"))
+    lower = Slider(x + 30, spawn.y + spawn.height + 80, spawn.width - (x + 30 - spawn.x)*2, spawn.height, 1, (1, 20), "Lower Bound")
+    upper = Slider(lower.x, lower.y + lower.height + 25, lower.width, lower.height, lower.value, lower.range, lower.label.replace("Lower", "Upper"))
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
@@ -47,6 +47,10 @@ class Interface:
 
         self.spawn.update(window, events)
         self.image.circle_spawn_rate = self.spawn.value
+
+        self.lower.update(window, events)
+        self.upper.value = max(self.upper.value, self.lower.value)
+        self.upper.update(window, events)
 
         t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
         window.blit(t1, (self.imp.x + self.imp.width + 10, self.imp.y + self.imp.height/2 - t1.get_height()/2))
