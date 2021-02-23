@@ -96,7 +96,9 @@ class Image:
                     self.growing = False
                     return
 
-            self.circles.append(Circle(x + self.x, y + self.y, self.image.get_at((x, y))))
+            c = Circle(x + self.x, y + self.y, self.image.get_at((x, y)))
+            c.grow_speed = random.randint(*self.grow_rate)
+            self.circles.append(c)
 
     def circle_collides(self, circle: Circle):
         if not (0 < circle.x - circle.radius < self.width) or not (0 < circle.y - circle.radius < self.height):
