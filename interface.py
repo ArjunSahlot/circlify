@@ -20,6 +20,7 @@ class Interface:
     lower = Slider(x + 30, spawn.y + spawn.height + 80, spawn.width - (x + 30 - spawn.x)*2, spawn.height, 1, (1, 20), "Lower Bound")
     upper = Slider(lower.x, lower.y + lower.height + 25, lower.width, lower.height, lower.value, lower.range, lower.label.replace("Lower", "Upper"))
     color = ColorPicker((x + 5, upper.y + upper.height + 75), 150, (x + 150*2 + 5 + 8, upper.y + upper.height + 75), (35, 150*2), False, False, 5, (x + 5, upper.y + upper.height + 75 + 150*2 + 5), (150*2 + 8 + 35, 35), None)
+    link = Button(x + 5, HEIGHT - 60 - 5, 300, 60, "Create a image using Pixel Painter!", 5)
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
@@ -71,6 +72,8 @@ class Interface:
         text = self.small_font.render("Circle Filling Color", 1, BLACK)
         window.blit(text, ((self.color.wheel_pos[0] + self.color.slider_pos[0] + self.color.slider_size[0])/2 - text.get_width()/2, self.color.wheel_pos[1] - text.get_height() - 5))
         self.color.update(window)
+
+        self.link.update(window)
 
         self.settings.update(window, events)
 
