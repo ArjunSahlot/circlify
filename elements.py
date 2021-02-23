@@ -118,7 +118,7 @@ class ColorPicker:
 
     def set_slider_cursor(self):
         if self.start is None:
-            self.slider_cursor = np.array((self.slider_size[0]//2, self.slider_size[1]//2))
+            self.slider_cursor = np.array((self.slider_size[0]//2, 1))
         elif self.start == "red":
             self.slider_cursor = np.array((self.slider_size[0]//2, 1))
 
@@ -142,7 +142,7 @@ class ColorPicker:
                 return True
             elif self.slider_pos[0] < x < self.slider_pos[0] + self.slider_size[0] and self.slider_pos[1] < y < self.slider_pos[1] + self.slider_size[1]:
                 if pygame.mouse.get_pressed()[0]:
-                    self.slider_cursor[1] = (y - self.slider_pos[1])*((self.slider_size[1]-1)/self.slider_size[1])
+                    self.slider_cursor[1] = (y - self.slider_pos[1])*((self.slider_size[1]-2)/self.slider_size[1]) + 1
                 else:
                     self.set_slider_cursor()
                 self.update_wheel()
