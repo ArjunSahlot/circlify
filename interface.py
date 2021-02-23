@@ -26,6 +26,7 @@ class Interface:
 
     def update(self, window, events):
         self.image.update()
+
         self.imp.update(window)
         if self.imp.clicked(events):
             try:
@@ -33,6 +34,7 @@ class Interface:
                 self.imp_text = file.split("/")[-1]
             except Exception as e:
                 self.imp_text = str(e) if "()" not in str(e) else "Unable to import image"
+
         self.exp.update(window)
         if self.exp.clicked(events):
             try:
@@ -40,13 +42,18 @@ class Interface:
                 self.exp_text = f"Latest export: {datetime.now().strftime('%I:%M:%S %p')}"
             except Exception as e:
                 self.exp_text = str(e)
+
         self.spawn.update(window, events)
         self.image.circle_spawn_rate = self.spawn.value
+
         t1 = self.font.render(self.imp_text, 1, RED if "." not in self.imp_text else BLACK)
         window.blit(t1, (self.imp.x + self.imp.width + 10, self.imp.y + self.imp.height/2 - t1.get_height()/2))
+
         t2 = self.font.render(self.exp_text, 1, RED if "Latest export" not in self.exp_text else BLACK)
         window.blit(t2, (self.exp.x + self.exp.width + 10, self.exp.y + self.exp.height/2 - t2.get_height()/2))
+
         self.settings.update(window, events)
+
         self.refresh.update(window, events)
         if self.refresh.clicked(events):
             self.image.refresh()
