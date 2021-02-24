@@ -100,17 +100,20 @@ class Interface:
         window.blit(text, ((self.circle_color.wheel_pos[0] + self.circle_color.slider_pos[0] + self.circle_color.slider_size[0])/2 - text.get_width()/2, self.circle_color.wheel_pos[1] - text.get_height() - 5))
         self.circle_color.update(window)
 
-        if self.any_color.checked:
-            pad = 10
-            width = self.circle_color.display_rect_size[0] + pad + 5
-            height = self.circle_color.display_rect_loc[1] + self.circle_color.display_rect_size[1] - self.circle_color.wheel_pos[1] + text.get_height() + pad*2
-            surf = pygame.Surface((width, height), pygame.SRCALPHA)
-            surf.fill((0, 0, 0, 90))
-            window.blit(surf, (self.circle_color.wheel_pos[0] - 5, self.circle_color.wheel_pos[1] - text.get_height() - 5 - pad))
 
         self.any_color.update(window, events)
 
         self.video.update(window, events)
+
+        if self.any_color.checked or self.video.checked:
+            pad = 10
+            width = self.circle_color.display_rect_size[0] + pad + 5
+            height = self.circle_color.display_rect_loc[1] + self.circle_color.display_rect_size[1] - self.circle_color.wheel_pos[1] + text.get_height() + pad*2
+            if self.video.checked:
+                height += self.any_color.height
+            surf = pygame.Surface((width, height), pygame.SRCALPHA)
+            surf.fill((0, 0, 0, 90))
+            window.blit(surf, (self.circle_color.wheel_pos[0] - 5, self.circle_color.wheel_pos[1] - text.get_height() - 5 - pad))
 
         text = self.small_font.render("Background Color", 1, BLACK)
         window.blit(text, ((self.bg_color.wheel_pos[0] + self.bg_color.slider_pos[0] + self.bg_color.slider_size[0])/2 - text.get_width()/2, self.bg_color.wheel_pos[1] - text.get_height() - 5))
