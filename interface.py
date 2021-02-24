@@ -127,3 +127,8 @@ class Interface:
         self.refresh.update(window, events)
         if self.refresh.clicked(events):
             self.image.refresh(self.bg_color.get_rgb(), "ANY" if self.any_color.checked else self.circle_color.get_rgb(), self.video.checked)
+
+
+class Settings:
+    def __init__(self):
+        pass
