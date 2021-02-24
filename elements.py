@@ -6,15 +6,16 @@ pygame.init()
 
 
 class Button:
+    def __init__(self, x, y, width, height=50, text="Button", border=0, text_color=None):
+        self.constants = {
+            "bg": (255,) * 3,
+            "border": (0,) * 3,
+            "text": (0,) * 3,
+            "highlight": (180,)*3,
+        }
+        if text_color is not None:
+            self.constants["text"] = text_color
 
-    constants = {
-        "bg": (255,) * 3,
-        "border": (0,) * 3,
-        "text": (0,) * 3,
-        "highlight": (180,)*3,
-    }
-
-    def __init__(self, x, y, width, height=50, text="Button", border=0):
         self.x, self.y, self.width, self.height = x, y, width, height
         self.text = text
         self.font = pygame.font.SysFont("comicsans", height-5)
