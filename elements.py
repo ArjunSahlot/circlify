@@ -37,6 +37,8 @@ class Button:
         text = self.font.render(self.text, 1, self.constants["text"])
         loc = (self.x + self.width/2 - text.get_width()/2, self.y + self.height/2 - text.get_height()/2)
         window.blit(text, loc)
+        if self.constants["text"] != (0,)*3:
+            pygame.draw.rect(window, self.constants["text"], (loc[0], loc[1] + text.get_height() - 5, text.get_width(), 3))
 
     def hovered(self):
         mx, my = pygame.mouse.get_pos()
