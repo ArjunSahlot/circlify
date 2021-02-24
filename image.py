@@ -22,6 +22,7 @@ class Image:
 
         self.open = []
         self.circles: "list[Circle]" = []
+        self.circle_color = "ANY"
         self.circle_spawn_rate = 20  # Higher for higher resolution.
         self.using_cam = False
         self.camera = cv2.VideoCapture(0)
@@ -97,7 +98,11 @@ class Image:
                     self.growing = False
                     return
 
-            c = Circle(x + self.x, y + self.y, self.image.get_at((x, y)))
+            if self.circle_color == "ANY":
+                color = self.image.get_at((x, y))
+            else:
+                color = self.circle_color
+            c = Circle(x + self.x, y + self.y, color)
             c.grow_speed = random.randint(*self.grow_rate)
             self.circles.append(c)
 
