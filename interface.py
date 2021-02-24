@@ -10,6 +10,10 @@ Tk().withdraw()
 pygame.init()
 
 
+class Settings:
+    settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
+
+
 class Interface:
     start_x = start_y = 0
     x, y = HEIGHT, 0
@@ -48,7 +52,7 @@ class Interface:
     any_color.checked = True
     video = Check(any_color.x, any_color.y + any_color.height + 5, "Use Video!")
     link = Button(x + 5, HEIGHT - 60 - 5, 685, 60, "Create an image using Pixel Painter!", 5, BLUE)
-    settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
+    settings = Settings()
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
     small_font = pygame.font.SysFont("comicsans", 30)
@@ -122,13 +126,8 @@ class Interface:
         if self.link.clicked(events):
             open("https://github.com/ArjunSahlot/pixel_painter")
 
-        self.settings.update(window, events)
+        # self.settings.update(window, events)
 
         self.refresh.update(window, events)
         if self.refresh.clicked(events):
             self.image.refresh(self.bg_color.get_rgb(), "ANY" if self.any_color.checked else self.circle_color.get_rgb(), self.video.checked)
-
-
-class Settings:
-    def __init__(self):
-        pass
