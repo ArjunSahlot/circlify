@@ -34,9 +34,10 @@ class Image:
 
         atexit.register(getattr(self.camera, "release"))
 
-    def refresh(self, bg, circle_col):
+    def refresh(self, bg, circle_col, video):
         self.background = bg
         self.circle_color = circle_col
+        self.using_cam = True
         self.circles.clear()
         self.growing = True
 
