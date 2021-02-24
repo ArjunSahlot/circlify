@@ -139,8 +139,8 @@ class Interface:
         if self.link.clicked(events):
             open("https://github.com/ArjunSahlot/pixel_painter")
 
-        self.settings.update(window, events)
-
         self.refresh.update(window, events)
         if self.refresh.clicked(events):
             self.image.refresh(self.bg_color.get_rgb(), "ANY" if self.any_color.checked else self.circle_color.get_rgb(), self.video.checked)
+
+        self.settings.update(window, events)
