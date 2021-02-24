@@ -44,6 +44,7 @@ class Interface:
         (150*2 + 8 + 35, 35),
         "black"
     )
+    any_color = Check(circle_color.display_rect_loc[0], circle_color.display_rect_loc[1] + circle_color.display_rect_size[1] + 5, "Use default color")
     link = Button(x + 5, HEIGHT - 60 - 5, 685, 60, "Create an image using Pixel Painter!", 5, BLUE)
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
@@ -97,6 +98,8 @@ class Interface:
         window.blit(text, ((self.circle_color.wheel_pos[0] + self.circle_color.slider_pos[0] + self.circle_color.slider_size[0])/2 - text.get_width()/2, self.circle_color.wheel_pos[1] - text.get_height() - 5))
         self.circle_color.update(window)
 
+        self.any_color.update(window, events)
+
         text = self.small_font.render("Background Color", 1, BLACK)
         window.blit(text, ((self.bg_color.wheel_pos[0] + self.bg_color.slider_pos[0] + self.bg_color.slider_size[0])/2 - text.get_width()/2, self.bg_color.wheel_pos[1] - text.get_height() - 5))
         self.bg_color.update(window)
@@ -109,4 +112,4 @@ class Interface:
 
         self.refresh.update(window, events)
         if self.refresh.clicked(events):
-            self.image.refresh(self.bg_color.get_rgb())
+            self.image.refresh(self.bg_color.get_rgb(), "ANY" if self.any_color.checked else self.circle_color.get_rgb())

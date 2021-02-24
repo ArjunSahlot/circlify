@@ -34,8 +34,9 @@ class Image:
 
         atexit.register(getattr(self.camera, "release"))
 
-    def refresh(self, bg):
+    def refresh(self, bg, circle_col):
         self.background = bg
+        self.circle_color = circle_col
         self.circles.clear()
         self.growing = True
 
