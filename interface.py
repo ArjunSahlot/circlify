@@ -97,6 +97,8 @@ class Interface:
         window.blit(text, ((self.circle_color.wheel_pos[0] + self.circle_color.slider_pos[0] + self.circle_color.slider_size[0])/2 - text.get_width()/2, self.circle_color.wheel_pos[1] - text.get_height() - 5))
         self.circle_color.update(window)
 
+        text = self.small_font.render("Background Color", 1, BLACK)
+        window.blit(text, ((self.bg_color.wheel_pos[0] + self.bg_color.slider_pos[0] + self.bg_color.slider_size[0])/2 - text.get_width()/2, self.bg_color.wheel_pos[1] - text.get_height() - 5))
         self.bg_color.update(window)
 
         self.link.update(window)
