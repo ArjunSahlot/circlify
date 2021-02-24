@@ -42,7 +42,6 @@ class Interface:
         5,
         (circle_color.slider_pos[0] + circle_color.slider_size[0] + 75, upper.y + upper.height + 75 + 150*2 + 5),
         (150*2 + 8 + 35, 35),
-        None,
         "black"
     )
     link = Button(x + 5, HEIGHT - 60 - 5, 675, 60, "Create a image using Pixel Painter!", 5)

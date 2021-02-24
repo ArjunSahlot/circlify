@@ -120,7 +120,7 @@ class ColorPicker:
         if self.start in (None, "red"):
             self.slider_cursor = np.array((self.slider_size[0]/2, 1))
         elif self.start == "black":
-            self.slider_cursor = np.array((self.slider_size[0]/2, self.slider_size[1]))
+            self.slider_cursor = np.array((self.slider_size[0]/2, self.slider_size[1]-1))
 
     def draw(self, window):
         pygame.draw.rect(window, self.get_rgb(), (*self.display_rect_loc, *self.display_rect_size))
@@ -150,8 +150,8 @@ class ColorPicker:
                 return True
 
     def get_rgb(self):
-        wrgb = self.wheel_surf.get_at(self.wheel_cursor)
-        srgb = self.slider_surf.get_at(self.slider_cursor)
+        wrgb = self.wheel_surf.get_at(np.uint32(self.wheel_cursor))
+        srgb = self.slider_surf.get_at(np.uint32(self.slider_cursor))
         whsv = rgb_to_hsv(*(np.array(wrgb)/255)[:3])
         shsv = rgb_to_hsv(*(np.array(srgb)/255)[:3])
         hsv = (whsv[0], whsv[1], shsv[2])
