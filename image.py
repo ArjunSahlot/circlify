@@ -17,7 +17,7 @@ class Image:
         image = pygame.Surface((width, height))
         self.font = lambda size: pygame.font.SysFont("comicsans", size)
         image.fill((0, 0, 0))
-        text = self.font(250).render("CIRCLIFY", 1, WHITE)
+        text = self.font(250).render(pygame.display.get_caption()[0].upper(), 1, WHITE)
         image.blit(text, (x + width//2 - text.get_width()//2, y + height//2 - text.get_height()//2))
 
         self.open = []
