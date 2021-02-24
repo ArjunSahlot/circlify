@@ -110,6 +110,8 @@ class Interface:
 
         self.any_color.update(window, events)
 
+        self.video.update(window, events)
+
         text = self.small_font.render("Background Color", 1, BLACK)
         window.blit(text, ((self.bg_color.wheel_pos[0] + self.bg_color.slider_pos[0] + self.bg_color.slider_size[0])/2 - text.get_width()/2, self.bg_color.wheel_pos[1] - text.get_height() - 5))
         self.bg_color.update(window)
