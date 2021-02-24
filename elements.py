@@ -268,3 +268,36 @@ class Slider:
 
     def value_to_loc(self):
         return np.interp(self.value, self.range, (self.x + self.height*1.5, self.x + self.width - self.height*1.5))
+
+
+class Check:
+    width = height = 50
+
+    def __init__(self, x, y, text):
+        self.x, self.y = x, y
+        self.checked = False
+        self.surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+        self.surf.fill((0, 0, 0, 0))
+        pygame.draw.polygon(self.surf, WHITE, [(9.7, 19.8), (3.4, 29.3), (21.5, 38.2), (45.3, 16.4), (38.6, 9.9), (22.5, 26.9)])
+        self.text = text
+
+    def update(self, window, events):
+        self.draw(window)
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.Rect(self.x, self.y, self.width, self.height).collidepoint(event.pos):
+                    self.checked = not self.checked
+                    return True
+
+    def draw(self, window):
+        text_surf = pygame.font.SysFont("comicsans", self.height - 8).render(self.text, 1, WHITE)
+        pygame.draw.rect(window, WHITE, (self.x, self.y, self.width, self.height), 5, 1)
+        if self.checked:
+            window.blit(self.surf, (self.x, self.y))
+        window.blit(text_surf, (self.x + self.width + 8, self.y + self.height/2 - text_surf.get_height()/2))
+    
+    def clicked(self, events):
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.Rect(self.x, self.y, self.width, self.height).collidepoint(event.pos):
+                    return True
