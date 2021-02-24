@@ -98,6 +98,7 @@ class Interface:
         self.circle_color.update(window)
 
         self.bg_color.update(window)
+        self.image.background = self.bg_color.get_rgb()
 
         self.link.update(window)
         if self.link.clicked(events):
