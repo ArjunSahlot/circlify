@@ -111,16 +111,18 @@ class ColorPicker:
         self.update_wheel()
 
     def set_wheel_cursor(self):
-        if self.start is None:
+        if self.start in (None, "black"):
             self.wheel_cursor = np.array((self.wheel_rad,)*2)
         elif self.start == "red":
             self.wheel_cursor = np.array((self.wheel_rad, self.wheel_rad*2-2))
 
     def set_slider_cursor(self):
         if self.start is None:
-            self.slider_cursor = np.array((self.slider_size[0]//2, 1))
+            self.slider_cursor = np.array((self.slider_size[0]/2, 1))
         elif self.start == "red":
-            self.slider_cursor = np.array((self.slider_size[0]//2, 1))
+            self.slider_cursor = np.array((self.slider_size[0]/2, 1))
+        elif self.start == "black":
+            self.slider_cursor = np.array((self.slider_size[0]/2, self.slider_size[1]))
 
     def draw(self, window):
         pygame.draw.rect(window, self.get_rgb(), (*self.display_rect_loc, *self.display_rect_size))
@@ -256,7 +258,7 @@ class Slider:
         pygame.draw.rect(window, self.colors["cursor"], (self.value_to_loc() - self.height/2, self.y, self.height, self.height))
         self.draw_arrows(window)
         text = self.font.render(f"{self.label}: {self.value}", 1, self.colors["text"])
-        text_loc = (self.x + (self.width-text.get_width()) // 2, self.y + self.height + 5)
+        text_loc = (self.x + (self.width-text.get_width()) / 2, self.y + self.height + 5)
         window.blit(text, text_loc)
 
     def loc_to_value(self):
