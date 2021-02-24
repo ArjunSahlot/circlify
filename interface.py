@@ -15,7 +15,10 @@ class Settings:
     active = False
 
     def update(self, window, events):
-        self.draw(window)
+        if self.active:
+            self.draw(window)
+        self.settings.update(window, events)
+
 
     def draw(self, window):
         pygame.draw.rect(window, WHITE, (HEIGHT + 5, 5, WIDTH - HEIGHT, self.settings.y - 5))
@@ -134,7 +137,7 @@ class Interface:
         if self.link.clicked(events):
             open("https://github.com/ArjunSahlot/pixel_painter")
 
-        # self.settings.update(window, events)
+        self.settings.update(window, events)
 
         self.refresh.update(window, events)
         if self.refresh.clicked(events):
