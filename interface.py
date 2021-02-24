@@ -17,7 +17,8 @@ class Settings:
         self.draw(window)
 
     def draw(self, window):
-        pass
+        pygame.draw.rect(window, WHITE, (HEIGHT + 5, 5, WIDTH - HEIGHT, self.settings.y - 5))
+        pygame.draw.rect(window, BLACK, (HEIGHT + 5, 5, WIDTH - HEIGHT, self.settings.y - 5), 5)
 
 
 class Interface:
@@ -59,7 +60,7 @@ class Interface:
     video = Check(any_color.x, any_color.y + any_color.height + 5, "Use Video!")
     link = Button(x + 5, HEIGHT - 60 - 5, 685, 60, "Create an image using Pixel Painter!", 5, BLUE)
     settings = Settings()
-    refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
+    refresh = ImgButton(settings.settings.x, 5, settings.settings.width, settings.settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
     small_font = pygame.font.SysFont("comicsans", 30)
 
