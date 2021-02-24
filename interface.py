@@ -45,6 +45,7 @@ class Interface:
         "black"
     )
     any_color = Check(circle_color.display_rect_loc[0], circle_color.display_rect_loc[1] + circle_color.display_rect_size[1] + 5, "Use default color")
+    any_color.checked = True
     link = Button(x + 5, HEIGHT - 60 - 5, 685, 60, "Create an image using Pixel Painter!", 5, BLUE)
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
