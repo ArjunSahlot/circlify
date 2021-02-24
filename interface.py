@@ -100,7 +100,6 @@ class Interface:
         window.blit(text, ((self.circle_color.wheel_pos[0] + self.circle_color.slider_pos[0] + self.circle_color.slider_size[0])/2 - text.get_width()/2, self.circle_color.wheel_pos[1] - text.get_height() - 5))
         self.circle_color.update(window)
 
-
         self.any_color.update(window, events)
 
         self.video.update(window, events)
