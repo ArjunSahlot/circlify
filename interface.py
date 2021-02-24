@@ -44,7 +44,7 @@ class Interface:
         (150*2 + 8 + 35, 35),
         "black"
     )
-    link = Button(x + 5, HEIGHT - 60 - 5, 675, 60, "Create a image using Pixel Painter!", 5)
+    link = Button(x + 5, HEIGHT - 60 - 5, 675, 60, "Create an image using Pixel Painter!", 5)
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     refresh = ImgButton(settings.x, 5, settings.width, settings.height, pygame.image.load(os.path.join("assets", "refresh_icon.png")), 5, 180)
     font = pygame.font.SysFont("comicsans", 50)
