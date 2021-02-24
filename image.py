@@ -33,7 +33,8 @@ class Image:
 
         atexit.register(getattr(self.camera, "release"))
 
-    def refresh(self):
+    def refresh(self, bg):
+        self.background = bg
         self.circles.clear()
         self.growing = True
 
