@@ -37,7 +37,7 @@ class Image:
         self.circles.clear()
         self.growing = True
 
-    def set_image(self, image, color="ANY", background=BLACK):
+    def set_image(self, image, color="ANY"):
         self.window.fill((0, 0, 0), (self.x, self.y, self.width, self.height))
         text = self.font(175).render("Calculating...", 1, WHITE)
         self.window.blit(text, (self.x + self.width//2 - text.get_width()//2, self.y + self.height//2 - text.get_height()//2))
@@ -47,7 +47,6 @@ class Image:
         image.set_alpha(0)
         w, h = image.get_size()
         self.image = image
-        self.background = background
         self.growing = True
         if color == "ANY":
             self.open = [(x, y) for x in range(w) for y in range(h)]
