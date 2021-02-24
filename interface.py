@@ -12,6 +12,7 @@ pygame.init()
 
 class Settings:
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
+    active = False
 
     def update(self, window, events):
         self.draw(window)
