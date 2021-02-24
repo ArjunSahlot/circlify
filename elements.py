@@ -117,9 +117,7 @@ class ColorPicker:
             self.wheel_cursor = np.array((self.wheel_rad, self.wheel_rad*2-2))
 
     def set_slider_cursor(self):
-        if self.start is None:
-            self.slider_cursor = np.array((self.slider_size[0]/2, 1))
-        elif self.start == "red":
+        if self.start in (None, "red"):
             self.slider_cursor = np.array((self.slider_size[0]/2, 1))
         elif self.start == "black":
             self.slider_cursor = np.array((self.slider_size[0]/2, self.slider_size[1]))
