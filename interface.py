@@ -155,7 +155,7 @@ class Interface:
         self.bg_color.update(window)
 
         self.link.update(window)
-        if self.link.clicked(events):
+        if self.link.clicked(events) and not self.settings.active:
             open("https://github.com/ArjunSahlot/pixel_painter")
 
         self.refresh.update(window, events)
