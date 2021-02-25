@@ -106,7 +106,7 @@ class Interface:
                 self.imp_text = str(e) if "()" not in str(e) else "Unable to import image"
 
         self.exp.update(window)
-        if self.exp.clicked(events):
+        if self.exp.clicked(events) and not self.settings.active:
             try:
                 pygame.image.save(self.image.render(), asksaveasfilename())
                 self.exp_text = f"Latest export: {datetime.now().strftime('%I:%M:%S %p')}"
