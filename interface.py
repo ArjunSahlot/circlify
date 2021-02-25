@@ -98,7 +98,7 @@ class Interface:
         self.image.update()
 
         self.imp.update(window)
-        if self.imp.clicked(events):
+        if self.imp.clicked(events) and not self.settings.active:
             try:
                 self.image.set_image(pygame.image.load(file := askopenfilename()))
                 self.imp_text = file.split("/")[-1]
