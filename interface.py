@@ -23,8 +23,8 @@ from image import Image
 from constants import *
 from webbrowser import open
 from datetime import datetime
-from elements import Button, ImgButton, Slider, ColorPicker, Check
 from tkinter.filedialog import askopenfilename, asksaveasfilename
+from elements import Button, ImgButton, Slider, ColorPicker, Check
 Tk().withdraw()
 pygame.init()
 
