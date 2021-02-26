@@ -56,7 +56,7 @@ class Image:
     def refresh(self, bg, circle_col, video):
         self.background = bg
         self.circle_color = circle_col
-        self.using_cam = True
+        self.using_cam = video
         self.circles.clear()
         self.growing = True
 
