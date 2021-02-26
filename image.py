@@ -169,9 +169,9 @@ class Image:
             for circle in self.circles:
                 circle.draw(surf)
 
-    def render(self, bg=(0, 0, 0)):
+    def render(self):
         surf = pygame.Surface((self.width, self.height))
-        surf.fill(bg)
+        surf.fill(self.background)
         prev = self.showing_image
         self.showing_image = False
         self.draw()
