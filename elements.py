@@ -309,7 +309,6 @@ class Check:
                 self.checked = not self.checked
 
     def draw(self, window):
-        
         text_surf = pygame.font.SysFont("comicsans", self.height - 8).render(self.text, 1, (0,)*3)
         pygame.draw.rect(window, (0,)*3, (self.x, self.y, self.width, self.height), 5, 1)
         if self.checked:

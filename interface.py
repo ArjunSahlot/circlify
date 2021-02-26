@@ -118,26 +118,26 @@ class Interface:
         text = self.font.render(self.exp_text, 1, RED if "Latest export" not in self.exp_text else BLACK)
         window.blit(text, (self.exp.x + self.exp.width + 10, self.exp.y + self.exp.height/2 - text.get_height()/2))
 
-        self.spawn.update(window, events)
+        self.spawn.update(window, events, self.settings.active)
         self.image.circle_spawn_rate = self.spawn.value
 
         pygame.draw.rect(window, BLACK, (self.lower.x - 10, self.lower.y - 10, self.spawn.width, 145), 5)
         text = self.small_font.render("Circle Growing Rate", 1, BLACK)
         window.blit(text, (self.lower.x - 10 + self.spawn.width/2 - text.get_width()/2, self.lower.y - 10 - 3 - text.get_height()))
 
-        self.lower.update(window, events)
+        self.lower.update(window, events, self.settings.active)
         self.upper.value = max(self.upper.value, self.lower.value)
-        self.upper.update(window, events)
+        self.upper.update(window, events, self.settings.active)
         self.lower.value = min(self.lower.value, self.upper.value)
         self.image.grow_rate = (self.lower.value, self.upper.value)
 
         text = self.small_font.render("Circle Color", 1, BLACK)
         window.blit(text, ((self.circle_color.wheel_pos[0] + self.circle_color.slider_pos[0] + self.circle_color.slider_size[0])/2 - text.get_width()/2, self.circle_color.wheel_pos[1] - text.get_height() - 5))
-        self.circle_color.update(window)
+        self.circle_color.update(window, self.settings.active)
 
-        self.any_color.update(window, events)
+        self.any_color.update(window, events, self.settings.active)
 
-        self.video.update(window, events)
+        self.video.update(window, events, self.settings.active)
 
         if self.any_color.checked or self.video.checked:
             pad = 10
@@ -151,7 +151,7 @@ class Interface:
 
         text = self.small_font.render("Background Color", 1, BLACK)
         window.blit(text, ((self.bg_color.wheel_pos[0] + self.bg_color.slider_pos[0] + self.bg_color.slider_size[0])/2 - text.get_width()/2, self.bg_color.wheel_pos[1] - text.get_height() - 5))
-        self.bg_color.update(window)
+        self.bg_color.update(window, self.settings.active)
 
         self.link.update(window)
         if self.link.clicked(events) and not self.settings.active:
