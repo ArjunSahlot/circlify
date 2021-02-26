@@ -48,6 +48,8 @@ def main(window):
                 if event.key == pygame.K_q and ctrl_pressed:
                     pygame.quit()
                     return
+                elif event.key == pygame.K_SPACE and interface.settings.pause.checked:
+                    interface.image.growing = not interface.image.growing
         pygame.display.update()
 
 
