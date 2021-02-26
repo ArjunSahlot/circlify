@@ -153,23 +153,24 @@ class ColorPicker:
         window.blit(self.wheel_darken, self.wheel_pos)
         self._draw_cursor(window, np.array(self.wheel_pos) + np.array(self.wheel_cursor))
 
-    def update(self, window):
+    def update(self, window, active):
         self.draw(window)
-        if any(pygame.mouse.get_pressed()):
-            x, y = pygame.mouse.get_pos()
-            if ((self.wheel_pos[0] + self.wheel_rad - x) ** 2 + (self.wheel_pos[1] + self.wheel_rad - y) ** 2)**0.5 < self.wheel_rad - 2:
-                if pygame.mouse.get_pressed()[0]:
-                    self.wheel_cursor = (x - self.wheel_pos[0], y - self.wheel_pos[1])
-                else:
-                    self.set_wheel_cursor()
-                return True
-            elif self.slider_pos[0] < x < self.slider_pos[0] + self.slider_size[0] and self.slider_pos[1] < y < self.slider_pos[1] + self.slider_size[1]:
-                if pygame.mouse.get_pressed()[0]:
-                    self.slider_cursor[1] = (y - self.slider_pos[1])*((self.slider_size[1]-2)/self.slider_size[1]) + 1
-                else:
-                    self.set_slider_cursor()
-                self.update_wheel()
-                return True
+        if not active:
+            if any(pygame.mouse.get_pressed()):
+                x, y = pygame.mouse.get_pos()
+                if ((self.wheel_pos[0] + self.wheel_rad - x) ** 2 + (self.wheel_pos[1] + self.wheel_rad - y) ** 2)**0.5 < self.wheel_rad - 2:
+                    if pygame.mouse.get_pressed()[0]:
+                        self.wheel_cursor = (x - self.wheel_pos[0], y - self.wheel_pos[1])
+                    else:
+                        self.set_wheel_cursor()
+                    return True
+                elif self.slider_pos[0] < x < self.slider_pos[0] + self.slider_size[0] and self.slider_pos[1] < y < self.slider_pos[1] + self.slider_size[1]:
+                    if pygame.mouse.get_pressed()[0]:
+                        self.slider_cursor[1] = (y - self.slider_pos[1])*((self.slider_size[1]-2)/self.slider_size[1]) + 1
+                    else:
+                        self.set_slider_cursor()
+                    self.update_wheel()
+                    return True
 
     def get_rgb(self):
         wrgb = self.wheel_surf.get_at(np.uint32(self.wheel_cursor))
@@ -256,22 +257,23 @@ class Slider:
         window.blit(left, (self.x, self.y))
         window.blit(right, (self.x + self.width - self.height, self.y))
 
-    def update(self, window, events):
+    def update(self, window, events, active):
         self.draw(window)
-        mx, my = pygame.mouse.get_pos()
-        for event in events:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if self.y <= my <= self.y + self.height:
-                    self.dragging = self.x + self.height <= mx <= self.x + self.width - self.height
-                    if self.x <= mx <= self.x + self.height:
-                        self.value = max(self.value - 1, self.range[0])
-                    elif self.x + self.width - self.height <= mx <= self.x + self.width:
-                        self.value = min(self.value + 1, self.range[1])
-            if event.type == pygame.MOUSEBUTTONUP:
-                self.dragging = False
+        if not active:
+            mx, my = pygame.mouse.get_pos()
+            for event in events:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.y <= my <= self.y + self.height:
+                        self.dragging = self.x + self.height <= mx <= self.x + self.width - self.height
+                        if self.x <= mx <= self.x + self.height:
+                            self.value = max(self.value - 1, self.range[0])
+                        elif self.x + self.width - self.height <= mx <= self.x + self.width:
+                            self.value = min(self.value + 1, self.range[1])
+                if event.type == pygame.MOUSEBUTTONUP:
+                    self.dragging = False
 
-        if self.dragging:
-            self.loc_to_value()
+            if self.dragging:
+                self.loc_to_value()
 
     def draw(self, window):
         pygame.draw.rect(window, self.colors["slider"], (self.x, self.y, self.width, self.height))
@@ -300,15 +302,14 @@ class Check:
         pygame.draw.polygon(self.surf, (0,)*3, [(9.7, 19.8), (3.4, 29.3), (21.5, 38.2), (45.3, 16.4), (38.6, 9.9), (22.5, 26.9)])
         self.text = text
 
-    def update(self, window, events):
+    def update(self, window, events, active):
         self.draw(window)
-        for event in events:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if pygame.Rect(self.x, self.y, self.width, self.height).collidepoint(event.pos):
-                    self.checked = not self.checked
-                    return True
+        if not active:
+            if self.clicked(events):
+                self.checked = not self.checked
 
     def draw(self, window):
+        
         text_surf = pygame.font.SysFont("comicsans", self.height - 8).render(self.text, 1, (0,)*3)
         pygame.draw.rect(window, (0,)*3, (self.x, self.y, self.width, self.height), 5, 1)
         if self.checked:
