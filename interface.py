@@ -40,7 +40,6 @@ class Settings:
         if self.settings.clicked(events):
             self.active = not self.active
 
-
     def draw(self, window):
         pygame.draw.rect(window, WHITE, (HEIGHT + 5, 5, WIDTH - HEIGHT - 10, self.settings.y - 5))
         pygame.draw.rect(window, BLACK, (HEIGHT + 5, 5, WIDTH - HEIGHT - 10, self.settings.y - 5), 5)
