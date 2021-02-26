@@ -32,6 +32,7 @@ pygame.init()
 class Settings:
     settings = ImgButton(WIDTH - 5 - 100, HEIGHT - 5 - 100, 100, 100, pygame.image.load(os.path.join("assets", "settings_icon.png")), 5, 90)
     x, y, width, height = HEIGHT + 5, 5, WIDTH - HEIGHT - 10, settings.y - 5
+    swap = ImgButton(HEIGHT - 115 - 5, 5, 115, 75, pygame.image.load(os.path.join("assets", "swap_icon.png")), 5, 0)
     pause = Check(x + 10, y + 10, "Play/Pause with spacebar")
     toggle = Check(pause.x, pause.y + pause.height + 10, "Show image toggle button")
     stats = Check(toggle.x, toggle.y + toggle.height + 10, "Show statistics")
@@ -46,6 +47,8 @@ class Settings:
         self.settings.update(window, events)
         if self.settings.clicked(events):
             self.active = not self.active
+        if self.toggle.checked:
+            self.swap.update(window, events)
 
     def draw(self, window):
         pygame.draw.rect(window, WHITE, (self.x, self.y, self.width, self.height))
