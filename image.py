@@ -174,6 +174,6 @@ class Image:
         surf.fill(self.background)
         prev = self.showing_image
         self.showing_image = False
-        self.draw()
+        self.draw(surf)
         self.showing_image = prev
         return surf
