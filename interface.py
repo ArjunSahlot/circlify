@@ -172,3 +172,6 @@ class Interface:
             self.image.refresh(self.bg_color.get_rgb(), "ANY" if self.any_color.checked else self.circle_color.get_rgb(), self.video.checked)
 
         self.settings.update(window, events)
+        if self.settings.stats.checked:
+            num_circles = len(self.image.circles)
+            
