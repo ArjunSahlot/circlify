@@ -53,6 +53,12 @@ class Image:
 
         atexit.register(getattr(self.camera, "release"))
 
+    def get_min_max_circles(self):
+        if self.circles:
+            circles = sorted(self.circles, key=lambda x: x.radius)
+            return circles[0], circles[-1]
+        return 0, 0
+
     def refresh(self, bg, circle_col, video):
         self.background = bg
         self.circle_color = circle_col
