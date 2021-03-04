@@ -24,6 +24,11 @@ from colorsys import rgb_to_hsv, hsv_to_rgb
 pygame.init()
 
 
+class TextInput:
+    def __init__(self):
+        pass
+
+
 class Button:
     def __init__(self, x, y, width, height=50, text="Button", border=0, text_color=None):
         self.constants = {
