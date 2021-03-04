@@ -189,11 +189,13 @@ class Interface:
                 f"Total circles: {num_circles}",
                 f"Time elapsed: {round(elapsed, 3)}",
                 f"Smallest circle size: {small}",
-                f""
+                f"Largest circle size: {large}"
             ]
-            for i, t in enumerate()
-                t2 = self.small_font.render(str(num_circles), 1, WHITE)
-                window.blit(t2, (5 + t1.get_width()/2 - t2.get_width()/2, HEIGHT - 300 + t1.get_height() + 15))
+            curr = HEIGHT - 300 + 15
+            for t in stats:
+                text = self.small_font.render(t, 1, WHITE)
+                window.blit(text, (5 + t1.get_width()/2 - text.get_width()/2, curr))
+                curr += text.get_height() + 5
 
         if self.settings.toggle.checked and self.settings.swap.clicked(events):
             self.image.showing_image = not self.image.showing_image
