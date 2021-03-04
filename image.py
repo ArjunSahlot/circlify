@@ -56,7 +56,7 @@ class Image:
     def get_min_max_circles(self):
         if self.circles:
             circles = sorted(self.circles, key=lambda x: x.radius)
-            return circles[0], circles[-1]
+            return circles[0].radius, circles[-1].radius
         return 0, 0
 
     def refresh(self, bg, circle_col, video):
