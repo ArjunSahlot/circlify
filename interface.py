@@ -17,6 +17,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+import time
 import pygame
 from tkinter import Tk
 from image import Image
@@ -58,6 +59,8 @@ class Settings:
 class Interface:
     start_x = start_y = 0
     x, y = HEIGHT, 0
+    start_time = time.time()
+    end_time = time.time()
     imp = Button(x + 5, 5, 225, 65, "Import", 5)
     imp_text = "No file imported."
     exp = Button(imp.x, imp.y+imp.height + 5, imp.width, imp.height, "Export", imp.border)
@@ -103,7 +106,7 @@ class Interface:
         self.spawn.value = self.image.circle_spawn_rate
         self.upper.value, self.lower.value = self.image.grow_rate
 
-    def update(self, window, events):
+    def update(self, window, events, fps):
         self.image.update()
 
         self.imp.update(window)
@@ -170,10 +173,27 @@ class Interface:
         self.refresh.update(window, events)
         if self.refresh.clicked(events) and not self.settings.active:
             self.image.refresh(self.bg_color.get_rgb(), "ANY" if self.any_color.checked else self.circle_color.get_rgb(), self.video.checked)
+            self.start_time = self.end_time = time.time()
+
+        if self.image.growing:
+            self.end_time = time.time()
 
         self.settings.update(window, events)
         if self.settings.stats.checked:
             num_circles = len(self.image.circles)
+            elapsed = self.end_time - self.start_time
+            small, large = self.image.get_min_max_circles()
+            t1 = self.font.render("Statistics", 1, WHITE)
+            window.blit(t1, (5, HEIGHT - 300))
+            stats = [
+                f"Total circles: {num_circles}",
+                f"Time elapsed: {round(elapsed, 3)}",
+                f"Smallest circle size: {small}",
+                f""
+            ]
+            for i, t in enumerate()
+                t2 = self.small_font.render(str(num_circles), 1, WHITE)
+                window.blit(t2, (5 + t1.get_width()/2 - t2.get_width()/2, HEIGHT - 300 + t1.get_height() + 15))
 
         if self.settings.toggle.checked and self.settings.swap.clicked(events):
             self.image.showing_image = not self.image.showing_image
