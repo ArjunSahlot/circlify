@@ -184,17 +184,18 @@ class Interface:
             elapsed = self.end_time - self.start_time
             small, large = self.image.get_min_max_circles()
             t1 = self.font.render("Statistics", 1, WHITE)
-            window.blit(t1, (5, HEIGHT - 300))
+            window.blit(t1, (30, HEIGHT - 200))
             stats = [
                 f"Total circles: {num_circles}",
-                f"Time elapsed: {round(elapsed, 3)}",
                 f"Smallest circle size: {small}",
-                f"Largest circle size: {large}"
+                f"Largest circle size: {large}",
+                f"Time elapsed: {round(elapsed, 3)}",
+                f"FPS: {round(fps, 3)}"
             ]
-            curr = HEIGHT - 300 + 15
+            curr = HEIGHT - 200 + t1.get_height() + 15
             for t in stats:
                 text = self.small_font.render(t, 1, WHITE)
-                window.blit(text, (5 + t1.get_width()/2 - text.get_width()/2, curr))
+                window.blit(text, (30 + t1.get_width()/2 - text.get_width()/2, curr))
                 curr += text.get_height() + 5
 
         if self.settings.toggle.checked and self.settings.swap.clicked(events):
