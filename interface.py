@@ -174,4 +174,6 @@ class Interface:
         self.settings.update(window, events)
         if self.settings.stats.checked:
             num_circles = len(self.image.circles)
-            
+
+        if self.settings.toggle.checked and self.settings.swap.clicked(events):
+            self.image.showing_image = not self.image.showing_image
