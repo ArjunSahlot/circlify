@@ -67,7 +67,7 @@ class Image:
         pygame.display.update()
         self.circles.clear()
         image = pygame.transform.scale(image, (self.width, self.height))
-        image.set_alpha(0)
+        # image.set_alpha(0)
         w, h = image.get_size()
         self.image = image
         self.growing = True
