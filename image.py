@@ -86,19 +86,20 @@ class Image:
 
     def update(self):
         self.draw()
-        if self.using_cam:
-            self.image = pygame.transform.scale(pygame.surfarray.make_surface(cv2.cvtColor(self.camera.read()[1], cv2.COLOR_BGR2RGB).swapaxes(1, 0)), (self.width, self.height))
-            rad = random.randint(5, 7)
-            self.circles.clear()
-            for x in range(rad, self.width-rad, rad*2):
-                for y in range(rad, self.height-rad, rad*2):
-                    self.circles.append(Circle(x, y, self.image.get_at((x, y)), rad))
-        else:
-            if self.growing and not self.showing_image:
-                self.spawn()
-                for circle in self.circles:
-                    circle.grow()
-                self.update_collisions()
+        if not self.showing_image:
+            if self.using_cam:
+                self.image = pygame.transform.scale(pygame.surfarray.make_surface(cv2.cvtColor(self.camera.read()[1], cv2.COLOR_BGR2RGB).swapaxes(1, 0)), (self.width, self.height))
+                rad = random.randint(5, 7)
+                self.circles.clear()
+                for x in range(rad, self.width-rad, rad*2):
+                    for y in range(rad, self.height-rad, rad*2):
+                        self.circles.append(Circle(x, y, self.image.get_at((x, y)), rad))
+            else:
+                if self.growing:
+                    self.spawn()
+                    for circle in self.circles:
+                        circle.grow()
+                    self.update_collisions()
 
     def spawn(self):
         for _ in range(self.circle_spawn_rate):
@@ -163,7 +164,7 @@ class Image:
         if surf is None:
             surf = self.window
         if self.showing_image:
-            surf.blit(pygame.transform.scale(self.image, (self.width, self.height)), (self.x, self.y))
+            surf.blit(self.image, (self.x, self.y))
         else:
             pygame.draw.rect(surf, self.background, (self.x, self.y, self.width, self.height))
             for circle in self.circles:
