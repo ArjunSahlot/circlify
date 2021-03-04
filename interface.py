@@ -201,3 +201,4 @@ class Interface:
 
         if self.settings.toggle.checked and self.settings.swap.clicked(events):
             self.image.showing_image = not self.image.showing_image
+
