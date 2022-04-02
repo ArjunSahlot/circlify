@@ -20,6 +20,9 @@
 import pygame
 from constants import *
 from interface import Interface
+import vidmaker
+
+v = vidmaker.Video("/home/arjun/Downloads/circlify.mp4", late_export=True)
 
 
 # Window Management
@@ -51,6 +54,10 @@ def main(window):
                 elif event.key == pygame.K_SPACE and interface.settings.pause.checked:
                     interface.image.growing = not interface.image.growing
         pygame.display.update()
+        v.update(pygame.surfarray.pixels3d(window).swapaxes(0, 1))
 
 
 main(WINDOW)
+
+v.export(True)
+v.compress()
